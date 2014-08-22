@@ -74,6 +74,7 @@ namespace JustTicket.Net
             request = WebRequest.Create(requestUrl) as HttpWebRequest;
             request.Method = method;
             request.CookieContainer = cookieContainer;
+            request.ContentLength = 0;
             if (method.ToLower() == "post" && !string.IsNullOrEmpty(requestBody))
             {
                 byte[] buffer = Encoding.ASCII.GetBytes(requestBody);

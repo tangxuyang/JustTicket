@@ -11,7 +11,19 @@ namespace JustTicket
     {
         static void Main(string[] args)
         {
-            Login();
+            //Login();
+            HttpCommunicator com = new HttpCommunicator();
+            RequestBlockParameter bp = new RequestBlockParameter();
+            bp.Method = "GET";
+            bp.ReturnType = RequestBlockReturnType.String;
+            bp.Url = "http://www.xiaomi.com";
+            bp.Communicator = com;
+
+            Block block = new RequestBlock();
+            block.BlockType = BlockType.RequestBlock;
+            string retStr = block.Process(bp) as string;
+
+            Console.WriteLine(retStr);
             Console.ReadLine();
         }
 
@@ -40,6 +52,8 @@ namespace JustTicket
 
                 
                 string parameter = "loginUserDTO.user_name=txyzqc&userDTO.password=1qaz2wsx&randCode=" + verificationCode;
+
+                //登录
                 bp.Method = "POST";
                 bp.ReturnType = RequestBlockReturnType.String;
                 bp.RequestBody = parameter;

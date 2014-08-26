@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using JustTicket.Net;
 using JustTicket.Logic;
+using JustTicket.Engining;
+using System.Diagnostics;
 
 namespace JustTicket
 {
@@ -11,22 +13,80 @@ namespace JustTicket
     {
         static void Main(string[] args)
         {
-            //Login();
-            HttpCommunicator com = new HttpCommunicator();
-            RequestBlockParameter bp = new RequestBlockParameter();
-            bp.Method = "GET";
-            bp.ReturnType = RequestBlockReturnType.String;
-            bp.Url = "http://www.xiaomi.com";
-            bp.Communicator = com;
+            TestToXml();
 
-            Block block = new RequestBlock();
-            block.BlockType = BlockType.RequestBlock;
-            string retStr = block.Process(bp) as string;
-
-            Console.WriteLine(retStr);
             Console.ReadLine();
         }
 
+        static void TestEngine(string fileName)
+        {
+            Engine en = new Engine(fileName);
+            en.Execute();
+        }
+
+        /// <summary>
+        /// 测试比较ToXml和ToXml2的性能
+        /// </summary>
+        static void TestToXml()
+        {
+            
+            Step step = new Step();
+            step.BlockType = BlockType.RequestBlock;
+            step.FileName = "filename.txt";
+            step.Method = "GET";
+            step.ReturnType = RequestBlockReturnType.String;
+            step.Url = "http://ctrip.com";
+
+            int n = 500000;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            for (int i = 0; i < n; i++)
+            {
+                XmlReader.ToXml<Step>(step);
+            }
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds/1000.0);
+
+            sw.Restart();
+            for (int i = 0; i < n; i++)
+            {
+                XmlReader.ToXml2<Step>(step);
+            }
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds / 1000.0);
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        static void TestReadXml()
+        {
+            var list = XmlReader.ReadXml("..\\..\\Flow.xml");
+
+            HttpCommunicator com = new HttpCommunicator();
+            RequestBlockParameter bp = new RequestBlockParameter();
+            bp.Communicator = com;
+
+            foreach (var v in list)
+            {
+                bp.Method = v.Method;
+                bp.FileName = v.FileName;
+                bp.ReturnType = v.ReturnType;
+                bp.Url = v.Url;
+                Block block = new RequestBlock();
+                object retVal = block.Process(bp);
+                if (retVal is System.IO.Stream)
+                    continue;
+                else
+                    Console.WriteLine(retVal);
+            }
+
+        }
+
+        /// <summary>
+        /// 登录到12306
+        /// </summary>
         static void Login()
         {
             HttpCommunicator com = new HttpCommunicator();
@@ -37,7 +97,6 @@ namespace JustTicket
                 
                 //获取验证码
                 Block verificationCodeBlock = new RequestBlock();
-                verificationCodeBlock.BlockType = BlockType.RequestBlock;
                 RequestBlockParameter bp = new RequestBlockParameter();
                 bp.Method = "GET";
                 bp.FileName = fileName;
@@ -59,7 +118,6 @@ namespace JustTicket
                 bp.RequestBody = parameter;
                 bp.Url = Strings.LoginUrl;
                 Block loginBlock = new RequestBlock();
-                loginBlock.BlockType = BlockType.RequestBlock;
                 string result = loginBlock.Process(bp) as string;
 
                  

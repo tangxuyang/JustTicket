@@ -53,6 +53,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JustTicket.Engine\JustTicket.Engine.csproj">
+      <Project>{BEBBF8C0-D2CF-4BAB-AEB9-AAB58825CFB8}</Project>
+      <Name>JustTicket.Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JustTicket.Logic\JustTicket.Logic.csproj">
       <Project>{511CF9A3-E124-4F2B-AA55-BFE9F14EBA1E}</Project>
       <Name>JustTicket.Logic</Name>
@@ -61,6 +65,9 @@
       <Project>{5C62F3A2-52A3-46CA-B125-F0D556ACB07F}</Project>
       <Name>JustTicket.Net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Flow.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,17 +7,10 @@ namespace JustTicket.Logic
 {
     public abstract class Block
     {
-        private BlockType blockType;
-        public BlockType BlockType
+        //private BlockType blockType;
+        public abstract BlockType BlockType
         {
-            get
-            {
-                return blockType;
-            }
-            set
-            {
-                blockType = value;
-            }
+            get;
         }
 
         public abstract object Process(object obj);

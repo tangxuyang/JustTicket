@@ -33,5 +33,13 @@ namespace JustTicket.Logic
             }
             return retObject;
         }
+
+        public override BlockType BlockType
+        {
+            get
+            {
+                return BlockType.RequestBlock;
+            }
+        }
     }
 }

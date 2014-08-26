@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Steps>
+  <Step>
+    <!--<Method></Method>-->
+    <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+    <ReturnType>FileName</ReturnType>
+    <BlockType>RequestBlock</BlockType>
+    <FileName Random="true">mytxt.png</FileName>
+  </Step>
+  <Step>
+    <Method>GET</Method>
+    <Url>http://cdn3.filepi.com/g/ghVeJ5Y/1409039277/71b2d57f5fa8d18c73bd8718e706e9d3</Url>
+    <ReturnType>FileName</ReturnType>
+    <BlockType>RequestBlock</BlockType>
+    <FileName Random="true">.pdf</FileName>
+  </Step>
+</Steps>

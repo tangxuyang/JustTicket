@@ -12,37 +12,13 @@ namespace JustTicket.Engining.Actions
     /// </summary>
     public class ConsoleOutputAction : Action
     {
-        public string Text
-        {
-            get;
-            set;
-        }
+        public string Text { get; set; }
 
-        [Default(DefaultValue="justdev")]
-        public string DefaultText
-        {
-            get;
-            set;
-        }
-
-        [Ignore]
-        public string IgnoreText
-        {
-            get;
-            set;
-        }
-
-        public int Age
-        { get; set; }
         public override void Execute()
         {
-            //Text = "Hello world";
-            //Console.WriteLine(Text);
-            //Console.WriteLine(DefaultText);
-            //Console.WriteLine(IgnoreText);
-            //Console.WriteLine(Age);
-            if (ResultStack.Instance.Stack.Count>0)
-                Console.WriteLine(ResultStack.Instance.Stack.Pop());
+            Console.WriteLine(GlobalVariables.Resolve(Text));
+            //if (ResultStack.Instance.Stack.Count>0)
+            //    Console.WriteLine(ResultStack.Instance.Stack.Pop());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Actions>
-  <DownFile RandomFileName="true">
+  <!--<DownFile RandomFileName="true">
     <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
     <Method>Get</Method>
     <FileName>.png</FileName>
@@ -11,5 +11,18 @@
     <DefaultText>defaultText</DefaultText>
     <IgnoreText>ignoreText</IgnoreText>
     <Age>13</Age>
-  </ConsoleOutput>
+  </ConsoleOutput>-->
+  <GlobalVariables>
+    <Name>txy</Name>
+    <Age>21</Age>
+    <Male>True</Male>
+  </GlobalVariables>
+  <ConsoleOutput Text="My name is {Name}, and i am {Age} years old"></ConsoleOutput>
+  <ConsoleOutput Text="{Age}"></ConsoleOutput>
+  <ConsoleOutput Text="{Male}"></ConsoleOutput>
+  <DownFile RandomFileName="false">
+    <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+    <Method>Get</Method>
+    <FileName>{Name}.png</FileName>
+  </DownFile>
 </Actions>

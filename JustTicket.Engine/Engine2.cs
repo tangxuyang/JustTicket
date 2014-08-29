@@ -34,6 +34,8 @@ namespace JustTicket.Engining
 
             foreach(XmlNode node in root.ChildNodes)
             {
+                if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)
+                    continue;
                 JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,null);
                 action.Init(node.OuterXml);
                 action.Execute();

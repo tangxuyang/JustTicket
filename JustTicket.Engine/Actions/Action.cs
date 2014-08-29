@@ -12,8 +12,10 @@ namespace JustTicket.Engining.Actions
     {
         public abstract void Execute();
 
+        protected string xml;
         public virtual void Init(string xml)
         {
+            this.xml = xml;
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
             XmlElement ele = doc.FirstChild as XmlElement;
@@ -63,6 +65,7 @@ namespace JustTicket.Engining.Actions
 
         protected void SetPropertyValue(PropertyInfo pi, object obj, object value)
         {
+            value = GlobalVariables.Resolve(value.ToString());
             object o = value;
             if(pi.PropertyType.IsEnum)
             {

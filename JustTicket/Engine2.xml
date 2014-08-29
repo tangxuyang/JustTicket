@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Actions>
+  <DownFile RandomFileName="true">
+    <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+    <Method>Get</Method>
+    <FileName>.png</FileName>
+  </DownFile>
+
+  <ConsoleOutput>
+    <Text>text</Text>
+    <DefaultText>defaultText</DefaultText>
+    <IgnoreText>ignoreText</IgnoreText>
+    <Age>13</Age>
+  </ConsoleOutput>
+</Actions>

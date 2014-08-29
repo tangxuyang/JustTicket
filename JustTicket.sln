@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustTicket.Net", "JustTicke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustTicketWindow", "JustTicketWindow\JustTicketWindow.csproj", "{73E408DC-97F8-4890-AEE4-E46C87502F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustTicket.Engine", "JustTicket.Engine\JustTicket.Engine.csproj", "{BEBBF8C0-D2CF-4BAB-AEB9-AAB58825CFB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustTicket.Engining", "JustTicket.Engine\JustTicket.Engining.csproj", "{BEBBF8C0-D2CF-4BAB-AEB9-AAB58825CFB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

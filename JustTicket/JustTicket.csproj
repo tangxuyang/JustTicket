@@ -54,9 +54,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JustTicket.Engine\JustTicket.Engine.csproj">
+    <ProjectReference Include="..\JustTicket.Engine\JustTicket.Engining.csproj">
       <Project>{BEBBF8C0-D2CF-4BAB-AEB9-AAB58825CFB8}</Project>
-      <Name>JustTicket.Engine</Name>
+      <Name>JustTicket.Engining</Name>
     </ProjectReference>
     <ProjectReference Include="..\JustTicket.Logic\JustTicket.Logic.csproj">
       <Project>{511CF9A3-E124-4F2B-AA55-BFE9F14EBA1E}</Project>
@@ -68,6 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Engine2.xml" />
     <Content Include="Flow.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

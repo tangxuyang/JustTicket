@@ -83,7 +83,7 @@
     </ProjectReference>
     <ProjectReference Include="..\JustTicket\JustTicket.csproj">
       <Project>{01CD307F-BBC3-4B64-BFB8-596A4E2E59A3}</Project>
-      <Name>JustTicket %28JustTicket\JustTicket%29</Name>
+      <Name>JustTicket</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

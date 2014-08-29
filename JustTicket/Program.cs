@@ -8,7 +8,8 @@ using JustTicket.Engining;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
-
+using JustTicket.Engining.Actions;
+using System.Xml;
 
 namespace JustTicket
 {
@@ -17,8 +18,16 @@ namespace JustTicket
         static void Main(string[] args)
         {
             //TestToXml();
-            Test.TestReadXml();
-            
+            //Test.TestReadXml();
+            //
+            //Test.TestActionResolve();
+
+            Test.TestEngine2();
+            //XmlDocument doc = new XmlDocument();
+            //doc.LoadXml(str);
+            //var v = doc.FirstChild;
+
+
             Console.WriteLine("over....");
             Console.ReadLine();
         }
@@ -26,6 +35,14 @@ namespace JustTicket
 
     public class Test
     {
+        public static void TestActionResolve()
+        {
+            string str = "<action><Text>mks</Text><Age>99</Age></action>";
+            JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction("ConsoleOutput", null);
+            action.Init(str);
+            action.Execute();
+        }
+
         /// <summary>
         /// 使用HttpCommunicator登录到12306
         /// </summary>
@@ -73,7 +90,7 @@ namespace JustTicket
         /// </summary>
         public static void TestReadXml()
         {
-            var list = XmlReader.ReadXml("..\\..\\Flow.xml");
+            var list = JustTicket.Engining.XmlReader.ReadXml("..\\..\\Flow.xml");
 
             HttpCommunicator com = new HttpCommunicator();
             RequestBlockParameter bp = new RequestBlockParameter();
@@ -122,7 +139,7 @@ namespace JustTicket
             sw.Start();
             for (int i = 0; i < n; i++)
             {
-                XmlReader.ToXml<Step>(step);
+                JustTicket.Engining.XmlReader.ToXml<Step>(step);
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds / 1000.0);
@@ -130,11 +147,20 @@ namespace JustTicket
             sw.Restart();
             for (int i = 0; i < n; i++)
             {
-                XmlReader.ToXml2<Step>(step);
+                JustTicket.Engining.XmlReader.ToXml2<Step>(step);
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds / 1000.0);
 
+        }
+
+        public static void TestEngine2()
+        {
+            string fileName = "..\\..\\Engine2.xml";
+            Engine2 engine = new Engine2();
+            engine.FileName = fileName;
+
+            engine.Execute();
         }
     }
 }

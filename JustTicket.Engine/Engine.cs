@@ -7,7 +7,7 @@ using JustTicket.Logic;
 
 namespace JustTicket.Engining
 {
-    public class Engine
+    public class Engine : IEngine
     {
         private string fileName;//Engine file which is xml format
         public Engine() { }
@@ -41,6 +41,19 @@ namespace JustTicket.Engining
                     continue;
                 else
                     Console.WriteLine(retVal);
+            }
+        }
+
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+
+            set
+            {
+                fileName = value;
             }
         }
     }

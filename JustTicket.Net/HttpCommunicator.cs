@@ -10,13 +10,35 @@ using System.Net.Security;
 
 namespace JustTicket.Net
 {
+    /// <summary>
+    /// 实现Http协议的连接体
+    /// </summary>
     public class HttpCommunicator : ICommunicator
     {
         #region Fields
+        /// <summary>
+        /// HttpWebRequest对象，用于发送请求
+        /// </summary>
         HttpWebRequest request;
+
+        /// <summary>
+        /// HttpWebResponse对象，响应
+        /// </summary>
         HttpWebResponse response;
+
+        /// <summary>
+        /// 请求Method
+        /// </summary>
         string method = "GET";
+
+        /// <summary>
+        /// 请求体，当Post是用
+        /// </summary>
         string requestBody;
+
+        /// <summary>
+        /// 用于保存通信中的cookie
+        /// </summary>
         private CookieContainer cookieContainer;
         #endregion
 
@@ -44,33 +66,31 @@ namespace JustTicket.Net
             }
         }
         #endregion
-        public static void Test()
-        {
-            HttpCommunicator com = new HttpCommunicator();
-            Stream stream = com.SendRequest("http://www.baidu.com");
-            StreamReader sr = new StreamReader(stream);
-            StringBuilder stringBuilder = new StringBuilder();
-            while (!sr.EndOfStream)
-            {
-                stringBuilder.Append(sr.ReadLine());
-            }
-            Console.WriteLine(stringBuilder.ToString());
-            Console.ReadLine();
-        }
+
+        /// <summary>
+        /// 静态构造
+        /// </summary>
         static HttpCommunicator()
         {
+            //跳过证书验证
             ServicePointManager.ServerCertificateValidationCallback +=delegate(object sender,X509Certificate cer,X509Chain chain,SslPolicyErrors sslPolicyErrors){return true;};  
         }
 
+        /// <summary>
+        /// 无参构造
+        /// </summary>
         public HttpCommunicator()
         {
             cookieContainer = new CookieContainer();
         }
 
+        /// <summary>
+        /// 发送请求到指定地址
+        /// </summary>
+        /// <param name="requestUrl">请求地址</param>
+        /// <returns></returns>
         public Stream SendRequest(string requestUrl)
         {
-           
-
             request = WebRequest.Create(requestUrl) as HttpWebRequest;
             request.Method = method;
             request.CookieContainer = cookieContainer;

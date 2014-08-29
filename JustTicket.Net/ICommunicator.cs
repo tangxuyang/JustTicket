@@ -6,6 +6,9 @@ using System.IO;
 
 namespace JustTicket.Net
 {
+    /// <summary>
+    /// 连接体接口，负责通信
+    /// </summary>
     public interface ICommunicator
     {
         Stream SendRequest(string requestUrl);

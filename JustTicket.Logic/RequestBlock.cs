@@ -8,6 +8,11 @@ namespace JustTicket.Logic
 {
     public class RequestBlock : Block
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj">RequestBlockParameter类型对象</param>
+        /// <returns></returns>
         public override object Process(object obj)
         {
             RequestBlockParameter parameter = obj as RequestBlockParameter;

@@ -9,7 +9,7 @@ namespace JustTicket.Engining
 {
     public class Engine
     {
-        private string fileName;
+        private string fileName;//Engine file which is xml format
         public Engine() { }
 
         public Engine(string fileName)
@@ -43,7 +43,5 @@ namespace JustTicket.Engining
                     Console.WriteLine(retVal);
             }
         }
-
-         
     }
 }

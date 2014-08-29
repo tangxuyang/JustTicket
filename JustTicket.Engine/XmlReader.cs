@@ -4,11 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Reflection;
+using JustTicket.Engining.Attributes;
 
 namespace JustTicket.Engining
 {
+    /// <summary>
+    /// 解析JustTicket的Xml文件，为Engine提供数据源
+    /// 理想情况是想把这个类写成一个功能强大的组件，
+    /// 用来解析JustTicket的流程文件。
+    /// </summary>
     public class XmlReader
     {
+        /// <summary>
+        /// 读取文件，解析出流程步
+        /// </summary>
+        /// <param name="fileName">流程文件名称</param>
+        /// <returns></returns>
         public static List<Step> ReadXml(string fileName)
         {
             XmlDocument document = new XmlDocument();

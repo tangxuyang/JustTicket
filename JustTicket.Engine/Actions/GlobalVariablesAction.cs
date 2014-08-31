@@ -20,7 +20,7 @@ namespace JustTicket.Engining.Actions
             
             foreach(XmlNode g in root.ChildNodes)
             {
-                GlobalVariables.Variables.Add(g.Name, g.InnerText);
+                Container.Variables.Variables.Add(g.Name, g.InnerText);
             }
         }
         public override void Execute()

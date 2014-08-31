@@ -5,15 +5,16 @@ using System.Text;
 
 namespace JustTicket.Engining
 {
-    class GlobalVariables
+    public class GlobalVariables
     {
-        public static Dictionary<string, object> Variables;
-        static GlobalVariables()
+        public Dictionary<string, object> Variables;
+        
+        public GlobalVariables()
         {
             Variables = new Dictionary<string, object>();
         }
 
-        public static string Resolve(string str)
+        public string Resolve(string str)
         {
             List<string> tokens = new List<string>();
             string temp="";

@@ -13,6 +13,28 @@ namespace JustTicket.Engining.Actions
         public abstract void Execute();
 
         protected string xml;
+
+        private ActionContainer container;
+
+        public ActionContainer Container
+        {
+            get
+            {
+                return container;
+            }
+            set
+            {
+                container = value;
+            }
+        }
+
+        [Default(DefaultValue="")]
+        public string Name
+        {
+            get;
+            set;
+        }
+
         public virtual void Init(string xml)
         {
             this.xml = xml;
@@ -31,23 +53,41 @@ namespace JustTicket.Engining.Actions
                 node = ele.SelectSingleNode(propertyName);
                 if (node == null)
                 {
-                    var v = pro.GetCustomAttributes(typeof(DefaultAttribute),false);
-                    if(v!=null && v.Length>0)
+                    var attr = ele.Attributes[propertyName];
+                    if (attr == null)
                     {
-                        SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
-                    }
-                    else
-                    {
-                        var attr = ele.Attributes[propertyName];
-                        if (attr == null)
+                        var v = pro.GetCustomAttributes(typeof(DefaultAttribute), false);
+                        if (v != null && v.Length > 0)
                         {
-                            throw new Exception(propertyName + " not in the xml");
+                            SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
                         }
                         else
                         {
-                            SetPropertyValue(pro, this, attr.Value);
+                            throw new Exception(propertyName + " not in the xml");
                         }
                     }
+                    else
+                    {
+                        SetPropertyValue(pro, this, attr.Value);
+                    }
+
+                    //var v = pro.GetCustomAttributes(typeof(DefaultAttribute),false);
+                    //if(v!=null && v.Length>0)
+                    //{
+                    //    SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
+                    //}
+                    //else
+                    //{
+                    //    var attr = ele.Attributes[propertyName];
+                    //    if (attr == null)
+                    //    {
+                    //        throw new Exception(propertyName + " not in the xml");
+                    //    }
+                    //    else
+                    //    {
+                    //        SetPropertyValue(pro, this, attr.Value);
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -65,7 +105,7 @@ namespace JustTicket.Engining.Actions
 
         protected void SetPropertyValue(PropertyInfo pi, object obj, object value)
         {
-            value = GlobalVariables.Resolve(value.ToString());
+            value = Container.Variables.Resolve(value.ToString());
             object o = value;
             if(pi.PropertyType.IsEnum)
             {
@@ -83,6 +123,18 @@ namespace JustTicket.Engining.Actions
             }
             
             pi.SetValue(obj, o, null);
+        }
+
+        protected object GetPropertyValue(PropertyInfo pi, object obj)
+        {
+            return pi.GetValue(obj, null);
+        }
+
+        protected object GetPropertyValue(string propertyName, object obj)
+        {
+            Type type = this.GetType();
+            PropertyInfo pi = type.GetProperty(propertyName);
+            return GetPropertyValue(pi, obj);
         }
     }
 }

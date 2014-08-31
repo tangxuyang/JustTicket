@@ -32,23 +32,39 @@ namespace JustTicket.Engining.Actions
             get;
             set;
         }
+
+        [Ignore]
+        public string OutputFileName
+        {
+            get;
+            set;
+        }
+
         public override void Execute()
         {
-            RequestBlockParameter rbp = new RequestBlockParameter();
-            rbp.Communicator = new HttpCommunicator();
-            rbp.FileName = FileName;
+            string fileName = FileName;
             if(RandomFileName)
             {
-                rbp.FileName = DateTime.Now.Ticks + FileName;
+                fileName = DateTime.Now.Ticks + fileName;
             }
 
-            rbp.Method = Method;
-            rbp.RequestBody = RequestBody;
-            rbp.ReturnType = RequestBlockReturnType.FileName;
-            rbp.Url = Url;
 
-            RequestBlock rb = new RequestBlock();
-            ResultStack.Instance.Stack.Push( rb.Process(rbp));
+            OutputFileName = Container.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;
+            //RequestBlockParameter rbp = new RequestBlockParameter();
+            //rbp.Communicator = new HttpCommunicator();
+            //rbp.FileName = FileName;
+            //if(RandomFileName)
+            //{
+            //    rbp.FileName = DateTime.Now.Ticks + FileName;
+            //}
+
+            //rbp.Method = Method;
+            //rbp.RequestBody = RequestBody;
+            //rbp.ReturnType = RequestBlockReturnType.FileName;
+            //rbp.Url = Url;
+
+            //RequestBlock rb = new RequestBlock();
+            //ResultStack.Instance.Stack.Push( rb.Process(rbp));
         }
     }
 }

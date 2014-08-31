@@ -20,9 +20,14 @@
   <ConsoleOutput Text="My name is {Name}, and i am {Age} years old"></ConsoleOutput>
   <ConsoleOutput Text="{Age}"></ConsoleOutput>
   <ConsoleOutput Text="{Male}"></ConsoleOutput>
-  <DownFile RandomFileName="false">
+  <DownFile RandomFileName="true" Name="dfa">
     <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
     <Method>Get</Method>
     <FileName>{Name}.png</FileName>
   </DownFile>
+  <Assignment>
+    <Variable>Name</Variable>
+    <Value>$dfa.OutputFileName</Value>
+  </Assignment>
+  <ConsoleOutput Text="{Name}"></ConsoleOutput>
 </Actions>

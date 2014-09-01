@@ -20,10 +20,11 @@ namespace JustTicket.Engining.Actions
             //throw new NotImplementedException();
             for(int i = 0 ; i < IterateCount; i++)
             {
-                foreach(Action action in ChildActions)
+                foreach (Action action in ChildActions)
                 {
                     action.Execute();
                 }
+                //base.Execute();
             }
         }
     }

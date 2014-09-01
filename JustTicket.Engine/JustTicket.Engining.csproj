@@ -44,15 +44,19 @@
   <ItemGroup>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\ActionResolver.cs" />
+    <Compile Include="Actions\BeginAction.cs" />
     <Compile Include="Actions\ComponentAction.cs" />
     <Compile Include="Actions\ConsoleInputAction.cs" />
     <Compile Include="Actions\ConsoleOutputAction.cs" />
+    <Compile Include="Actions\ElseAction.cs" />
     <Compile Include="Actions\ForAction.cs" />
+    <Compile Include="Actions\IfAction.cs" />
     <Compile Include="Actions\RequestFileAction.cs" />
     <Compile Include="Actions\GlobalVariablesAction.cs" />
     <Compile Include="Actions\AssignmentAction.cs" />
     <Compile Include="Actions\RequestStringAction.cs" />
     <Compile Include="Actions\ShowImageAction.cs" />
+    <Compile Include="Actions\StringReplaceAction.cs" />
     <Compile Include="Actions\VirtualAction.cs" />
     <Compile Include="Attributes\DefaultAttribute.cs" />
     <Compile Include="Attributes\IgnoreAttribute.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Attributes\OutputAttribute.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Engine2.cs" />
+    <Compile Include="ExpressionHelper.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="NetHelper.cs" />

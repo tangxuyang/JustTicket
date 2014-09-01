@@ -14,6 +14,16 @@ namespace JustTicket.Engining.Actions
             GenerateChildActions(xml);
         }
 
+        //public override void Execute()
+        //{
+        //    base.Execute();
+
+        //    foreach(var action in ChildActions)
+        //    {
+        //        action.Execute();
+        //    }
+        //}
+
         private bool IsGenerateChildActions = false;
 
         private void GenerateChildActions(string xml)
@@ -42,10 +52,10 @@ namespace JustTicket.Engining.Actions
                     action.Container = this;
                     action.Init(n.OuterXml);
                     ChildActions.Add(action);
-                    if(!string.IsNullOrEmpty(action.Name))
-                    {
-                        NamedActions.Add(action.Name, action);
-                    }
+                    //if(!string.IsNullOrEmpty(action.Name))
+                    //{
+                    //    NamedActions.Add(action.Name, action);
+                    //}
                 }
             }
         }

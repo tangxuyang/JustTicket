@@ -35,7 +35,6 @@ namespace JustTicket
             //doc.LoadXml(str);
             //var v = doc.FirstChild;
 
-
             Console.WriteLine("over....");
             Console.ReadLine();
         }

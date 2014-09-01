@@ -56,7 +56,10 @@
     <VerificationCode></VerificationCode>
     <Result></Result>
   </GlobalVariables>
-  <For IterateCount="2">
+  <For IterateCount="1">
+    <GlobalVariables>
+      <LocalResult></LocalResult>
+    </GlobalVariables>
     <RequestFile RandomFileName="true" Name="dfa">
       <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
       <Method>Get</Method>
@@ -85,8 +88,55 @@
       <Variable>Result</Variable>
       <Value>$login.Result</Value>
     </Assignment>
-    <ConsoleOutput>
+    <StringReplace Name="sr">
+      <SourceString>{Result}</SourceString>
+      <OldString>&quot;</OldString>
+      <NewString>\&quot;</NewString>
+    </StringReplace>
+    <Assignment>
+      <Variable>LocalResult</Variable>
+      <Value>$sr.ResultString</Value>
+    </Assignment>
+    <If Condition="&quot;{LocalResult}&quot;.Contains(&quot;\&quot;loginCheck\&quot;:\&quot;Y\&quot;&quot;)">
+      <Begin>
+        <ConsoleOutput>
+          <Text>Login ...</Text>
+        </ConsoleOutput>
+      </Begin>
+      <Else>
+        <ConsoleOutput>
+          <Text>Login failed...</Text>
+        </ConsoleOutput>
+      </Else>
+    </If>
+    <!--<ConsoleOutput>
       <Text>{Result}</Text>
-    </ConsoleOutput>
+    </ConsoleOutput>-->
   </For>
+
+  <!--<GlobalVariables>
+    <Age>20</Age>
+  </GlobalVariables>
+  <Assignment>
+    <Variable>Age</Variable>
+    <Value>9</Value>
+  </Assignment>
+  <If Condition="{Age}>10">
+    <Begin>
+      <ConsoleOutput>
+        <Text>If true</Text>
+      </ConsoleOutput>
+      <ConsoleOutput>
+        <Text>Hello world</Text>
+      </ConsoleOutput>
+    </Begin>
+    <Else>
+      <ConsoleOutput>
+        <Text>If false</Text>
+      </ConsoleOutput>
+      <ConsoleOutput>
+        <Text>bye!!</Text>
+      </ConsoleOutput>
+    </Else>
+  </If>-->
 </Actions>

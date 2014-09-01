@@ -117,6 +117,8 @@
     <Text>{Name}</Text>
   </ConsoleOutput>-->
 
+  <!-- Login 
+  
   <GlobalVariables>
     <Name2></Name2>
     <VerificationCode></VerificationCode>
@@ -176,34 +178,13 @@
         </ConsoleOutput>
       </Else>
     </If>
-    <!--<ConsoleOutput>
-      <Text>{Result}</Text>
-    </ConsoleOutput>-->
   </For>
-
-  <!--<GlobalVariables>
-    <Age>20</Age>
-  </GlobalVariables>
-  <Assignment>
-    <Variable>Age</Variable>
-    <Value>9</Value>
-  </Assignment>
-  <If Condition="{Age}>10">
-    <Begin>
+-->
+  <For IterateCount="5">
+    <For IterateCount="4">
       <ConsoleOutput>
-        <Text>If true</Text>
+        <Text>***###***</Text>
       </ConsoleOutput>
-      <ConsoleOutput>
-        <Text>Hello world</Text>
-      </ConsoleOutput>
-    </Begin>
-    <Else>
-      <ConsoleOutput>
-        <Text>If false</Text>
-      </ConsoleOutput>
-      <ConsoleOutput>
-        <Text>bye!!</Text>
-      </ConsoleOutput>
-    </Else>
-  </If>-->
+    </For>
+  </For>
 </Actions>

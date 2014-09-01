@@ -1,5 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Actions>
+  <!--
+  Usage:
+  
+    ########DownFile#######
+    <DownFile RandomFileName="true">
+      <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+      <Method>Get</Method>
+      <FileName>.png</FileName>
+    </DownFile>
+    
+    #######ConsoleOutput#######
+    <ConsoleOutput>
+      <Text>Hello world</Text>
+    <ConsoleOutput>
+    
+    #######ConsoleInput#######
+    <ConsoleInput>
+      <Text>Please input ...</Text>
+      __<OutputString> 输入值 __
+    </ConsoleInput>
+    
+    #######Assignment#######
+    <Assignment>
+      <Variable>
+        variableName
+      </Variable>
+      <Value>
+        value
+      </Value>
+      __在Assignment中可以引用对象的属性，$变量名.属性值__
+    </Assignment>
+    
+    #######If,Begin,Else#######
+    <If Condition="">
+      <Begin>
+      </Begin>
+      <Else>
+      </Else>
+    </If>
+    
+    #######For#######
+    <For IterateCount="3">
+    
+    </For>
+    
+    #######RequestString#######
+    <RequestString Name="login">
+      <Url>https://kyfw.12306.cn/otn/login/loginAysnSuggest</Url>
+      <Method>Post</Method>
+      <RequestBody>loginUserDTO.user_name=txyzqc&amp;userDTO.password=1qaz2wsx&amp;randCode={VerificationCode}</RequestBody>
+    </RequestString>
+    
+    #######ShowImage#######
+    <ShowImage>
+      <FileName></FileName>
+    <ShowImage>
+    
+    #######GlobalVariables#######
+    <GlobalVariables>
+      <gv1>val1</gv1>
+      <gv2>val2</gv2>
+      __全局变量，可以使用{变量名}来引用__
+    </GlobalVariables>
+    
+    
+  -->
+  
   <!--<DownFile RandomFileName="true">
     <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
     <Method>Get</Method>
@@ -12,7 +79,6 @@
     <IgnoreText>ignoreText</IgnoreText>
     <Age>13</Age>
   </ConsoleOutput>-->
-  
   
   <!--<GlobalVariables>
     <Name>txy</Name>
@@ -56,6 +122,7 @@
     <VerificationCode></VerificationCode>
     <Result></Result>
   </GlobalVariables>
+  
   <For IterateCount="1">
     <GlobalVariables>
       <LocalResult></LocalResult>

@@ -8,7 +8,8 @@ using JustTicket.Net;
 
 namespace JustTicket.Engining.Actions
 {
-    public class DownFileAction : Action
+    [Map(AliasName="DownFileAction")]
+    public class RequestFileAction : Action
     {
         public string FileName
         { set; get; }
@@ -48,23 +49,7 @@ namespace JustTicket.Engining.Actions
                 fileName = DateTime.Now.Ticks + fileName;
             }
 
-
             OutputFileName = Container.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;
-            //RequestBlockParameter rbp = new RequestBlockParameter();
-            //rbp.Communicator = new HttpCommunicator();
-            //rbp.FileName = FileName;
-            //if(RandomFileName)
-            //{
-            //    rbp.FileName = DateTime.Now.Ticks + FileName;
-            //}
-
-            //rbp.Method = Method;
-            //rbp.RequestBody = RequestBody;
-            //rbp.ReturnType = RequestBlockReturnType.FileName;
-            //rbp.Url = Url;
-
-            //RequestBlock rb = new RequestBlock();
-            //ResultStack.Instance.Stack.Push( rb.Process(rbp));
         }
     }
 }

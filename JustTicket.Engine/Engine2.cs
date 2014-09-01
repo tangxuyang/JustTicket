@@ -11,6 +11,10 @@ namespace JustTicket.Engining
     public class Engine2 : IEngine
     {
         private string fileName;
+
+        /// <summary>
+        /// Engine xml file
+        /// </summary>
         public string FileName
         {
             get
@@ -23,10 +27,13 @@ namespace JustTicket.Engining
             }
         }
 
+        /// <summary>
+        /// 分析文件，并执行
+        /// </summary>
         public void Execute()
         {
             if (!File.Exists(FileName))
-                throw new Exception("Xml is not found!");
+                throw new Exception("Xml file not found!");
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
@@ -37,16 +44,26 @@ namespace JustTicket.Engining
 
             foreach(XmlNode node in root.ChildNodes)
             {
-                if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)
+                if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)//过滤注释和数据元素
                     continue;
-                JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,null);
+                string ns = null;
+                try
+                {
+                    ns = node.Attributes["Namespace"].Value;
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+                JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,string.IsNullOrEmpty(ns)?null:ns);
                 action.Container = container;
                 action.Init(node.OuterXml);
                 if(!string.IsNullOrEmpty(action.Name))
                 {
-                    container.Actions.Add(action.Name,action);
-                    container.AllActions.Add(action);
+                    container.Actions.Add(action.Name,action);//保存具有名称的action到Dictionary中
                 }
+                container.AllActions.Add(action);
                 action.Execute();
             }
         }

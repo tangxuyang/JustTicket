@@ -38,9 +38,10 @@ namespace JustTicket.Engining.Actions
         public virtual void Init(string xml)
         {
             this.xml = xml;
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            XmlElement ele = doc.FirstChild as XmlElement;
+            //XmlDocument doc = new XmlDocument();
+            //doc.LoadXml(xml);
+            //XmlElement ele = doc.FirstChild as XmlElement;
+            XmlElement ele = GetRootNode(xml) as XmlElement;
 
             //Only Property
             Type type = this.GetType();
@@ -70,24 +71,6 @@ namespace JustTicket.Engining.Actions
                     {
                         SetPropertyValue(pro, this, attr.Value);
                     }
-
-                    //var v = pro.GetCustomAttributes(typeof(DefaultAttribute),false);
-                    //if(v!=null && v.Length>0)
-                    //{
-                    //    SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
-                    //}
-                    //else
-                    //{
-                    //    var attr = ele.Attributes[propertyName];
-                    //    if (attr == null)
-                    //    {
-                    //        throw new Exception(propertyName + " not in the xml");
-                    //    }
-                    //    else
-                    //    {
-                    //        SetPropertyValue(pro, this, attr.Value);
-                    //    }
-                    //}
                 }
                 else
                 {
@@ -135,6 +118,13 @@ namespace JustTicket.Engining.Actions
             Type type = this.GetType();
             PropertyInfo pi = type.GetProperty(propertyName);
             return GetPropertyValue(pi, obj);
+        }
+
+        protected XmlNode GetRootNode(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            return doc.FirstChild;
         }
     }
 }

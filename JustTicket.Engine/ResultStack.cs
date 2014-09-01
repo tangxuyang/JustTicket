@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JustTicket.Engining
 {
+    /// <summary>
+    /// 结果栈
+    /// </summary>
     public class ResultStack
     {
         private Stack<object> stack;

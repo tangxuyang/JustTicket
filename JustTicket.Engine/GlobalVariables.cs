@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JustTicket.Engining
 {
+    /// <summary>
+    /// 全局变量
+    /// </summary>
     public class GlobalVariables
     {
         public Dictionary<string, object> Variables;
@@ -14,6 +17,11 @@ namespace JustTicket.Engining
             Variables = new Dictionary<string, object>();
         }
 
+        /// <summary>
+        /// 解析指定字符串，如果引用的是全局变量，则返回全局变量的值，否则返回原值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public string Resolve(string str)
         {
             List<string> tokens = new List<string>();

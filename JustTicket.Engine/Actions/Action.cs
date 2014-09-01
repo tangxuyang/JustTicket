@@ -10,13 +10,17 @@ namespace JustTicket.Engining.Actions
 {
     public abstract class Action
     {
-        public abstract void Execute();
+        public virtual void Execute()
+        {
+            Init();
+        }
 
         protected string xml;
 
-        private ActionContainer container;
+        private Action container;
 
-        public ActionContainer Container
+        [Ignore]
+        public Action Container
         {
             get
             {
@@ -28,6 +32,58 @@ namespace JustTicket.Engining.Actions
             }
         }
 
+        private GlobalVariables variables;
+
+        [Ignore]
+        public GlobalVariables Variables
+        {
+            get
+            {
+                if(variables==null)
+                    variables = new GlobalVariables();
+                return variables;
+            }
+            set
+            {
+                variables = value;
+            }
+
+        }
+
+        private Dictionary<string, Action> namedActions;
+
+        private List<Action> childActions;
+
+        [Ignore]
+        public Dictionary<string, Action> NamedActions
+        {
+            get
+            {
+                if (namedActions == null)
+                    namedActions = new Dictionary<string, Action>();
+                return namedActions;
+            }
+            set
+            {
+                namedActions = value;
+            }
+        }
+
+        [Ignore]
+        public List<Action> ChildActions
+        {
+            get
+            {
+                if (childActions == null)
+                    childActions = new List<Action>();
+                return childActions;
+            }
+            set
+            {
+                childActions = value;
+            }
+        }
+
         [Default(DefaultValue="")]
         public string Name
         {
@@ -35,12 +91,12 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
-        public virtual void Init(string xml)
+        public void Init(string xml)
         {
             this.xml = xml;
-            //XmlDocument doc = new XmlDocument();
-            //doc.LoadXml(xml);
-            //XmlElement ele = doc.FirstChild as XmlElement;
+        }
+        protected virtual void Init()
+        {
             XmlElement ele = GetRootNode(xml) as XmlElement;
 
             //Only Property
@@ -77,18 +133,28 @@ namespace JustTicket.Engining.Actions
                     SetPropertyValue(pro, this, node.InnerText);
                 }
             }
+
+            if(!string.IsNullOrEmpty(this.Name) )
+            {
+                if(!Container.NamedActions.ContainsKey(this.Name))
+                    Container.NamedActions.Add(this.Name, this);
+                else if(Container.NamedActions[this.Name]!=this)
+                {
+                    throw new Exception("There shouldn't be same name Action("+this.Name+")");
+                }
+            }
         }
 
         protected bool IsExcludeProproty(PropertyInfo pi)
         {
-            int count = pi.GetCustomAttributes(false).Where(obj => obj is IgnoreAttribute).ToList().Count;
+            int count = pi.GetCustomAttributes(true).Where(obj => obj is IgnoreAttribute).ToList().Count;
             bool complexNonString = !pi.PropertyType.IsPrimitive && pi.PropertyType != typeof(string);
             return  count> 0 || complexNonString ;
         }
 
         protected void SetPropertyValue(PropertyInfo pi, object obj, object value)
         {
-            value = Container.Variables.Resolve(value.ToString());
+            value = Container.Variables.Resolve(Container, value.ToString());
             object o = value;
             if(pi.PropertyType.IsEnum)
             {

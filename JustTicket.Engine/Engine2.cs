@@ -40,8 +40,9 @@ namespace JustTicket.Engining
 
             XmlElement root = doc.DocumentElement as XmlElement;
 
-            ActionContainer container = new ActionContainer();
-
+            //ActionContainer container = new ActionContainer();
+            VirtualAction containerAction = new VirtualAction();
+            containerAction.Container = null;
             foreach(XmlNode node in root.ChildNodes)
             {
                 if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)//过滤注释和数据元素
@@ -57,13 +58,13 @@ namespace JustTicket.Engining
                 }
 
                 JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,string.IsNullOrEmpty(ns)?null:ns);
-                action.Container = container;
+                action.Container = containerAction;
                 action.Init(node.OuterXml);
                 if(!string.IsNullOrEmpty(action.Name))
                 {
-                    container.Actions.Add(action.Name,action);//保存具有名称的action到Dictionary中
+                    containerAction.NamedActions.Add(action.Name, action);//保存具有名称的action到Dictionary中
                 }
-                container.AllActions.Add(action);
+                containerAction.ChildActions.Add(action);
                 action.Execute();
             }
         }

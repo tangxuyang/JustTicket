@@ -8,42 +8,19 @@ namespace JustTicket.Engining.Actions
 {
     public abstract class ComponentAction : Action
     {
-        private Dictionary<string, Action> actions;
-        private List<Action> childActions;
-        public List<Action> ChildActions
+        protected override void Init()
         {
-            get
-            {
-                if (childActions == null)
-                    childActions = new List<Action>();
-                return childActions;
-            }
-            set
-            {
-                childActions = value;
-            }
-        }
-        public Dictionary<string,Action> Actions
-        {
-            get
-            {
-                if (actions == null)
-                    actions = new Dictionary<string, Action>();
-                return actions;
-            }
-            set
-            {
-                actions = value;
-            }
-        }
-        public override void Init(string xml)
-        {
-            base.Init(xml);
+            base.Init();
             GenerateChildActions(xml);
         }
 
+        private bool IsGenerateChildActions = false;
+
         private void GenerateChildActions(string xml)
         {
+            if (IsGenerateChildActions)
+                return;
+            IsGenerateChildActions = true;
             XmlNode node = GetRootNode(xml);
             Action action;
             string ns;
@@ -62,20 +39,15 @@ namespace JustTicket.Engining.Actions
                     }
 
                     action = ActionResolver.ResolveAction(n.Name, ns);
-                    action.Container = this.Container;
+                    action.Container = this;
                     action.Init(n.OuterXml);
                     ChildActions.Add(action);
-                    if(!string.IsNullOrEmpty( action.Name))
+                    if(!string.IsNullOrEmpty(action.Name))
                     {
-                        Actions.Add(action.Name, action);
+                        NamedActions.Add(action.Name, action);
                     }
                 }
             }
         }
-
-        //public override void Execute()
-        //{
-        //    //throw new NotImplementedException();
-        //}
     }
 }

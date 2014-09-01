@@ -16,7 +16,8 @@ namespace JustTicket.Engining.Actions
 
         public override void Execute()
         {
-            Console.WriteLine(Container.Variables.Resolve(Text));
+            base.Execute();
+            Console.WriteLine(Container.Variables.Resolve(Container, Text));
             //if (ResultStack.Instance.Stack.Count>0)
             //    Console.WriteLine(ResultStack.Instance.Stack.Pop());
         }

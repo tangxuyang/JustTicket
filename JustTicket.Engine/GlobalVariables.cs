@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JustTicket.Engining.Actions;
 
 namespace JustTicket.Engining
 {
@@ -22,7 +23,7 @@ namespace JustTicket.Engining
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public string Resolve(string str)
+        public string Resolve(JustTicket.Engining.Actions.Action action, string str)
         {
             List<string> tokens = new List<string>();
             string temp="";
@@ -41,13 +42,38 @@ namespace JustTicket.Engining
                 temp += v;
             }
 
+            
             foreach(var t in tokens)
             {
                 if (t == "")
-                    throw new Exception("empty variable reference");
-                if (!Variables.ContainsKey(t))
-                    throw new Exception("no variable "+t);
-                str = str.Replace("{" + t + "}", Variables[t].ToString());
+                {
+                    break;
+                 //   throw new Exception("empty variable reference");
+                }
+                GlobalVariables variable;
+                JustTicket.Engining.Actions.Action container = action;
+                string val=null;
+                while(container!=null)
+                {
+                    variable = container.Variables;
+                    if(variable.Variables.ContainsKey(t))
+                    {
+                        //str = str.Replace("{" + t + "}", variable.Variables[t].ToString());
+                        val = variable.Variables[t].ToString();
+                        break;
+                    }
+                    else
+                    {
+                        container = container.Container;
+                    }
+                }
+                if (val == null)
+                {
+                 //   throw new Exception("no variable " + t);
+                }
+                else
+                    str = str.Replace("{" + t + "}", val);
+                
             }
             return str;
         }

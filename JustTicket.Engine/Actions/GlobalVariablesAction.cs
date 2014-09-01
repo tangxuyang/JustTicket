@@ -9,9 +9,9 @@ namespace JustTicket.Engining.Actions
 {
     public class GlobalVariablesAction : Action
     {
-        public override void Init(string xml)
+        protected override void Init()
         {
-            base.Init(xml);
+            base.Init();
 
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
@@ -25,6 +25,7 @@ namespace JustTicket.Engining.Actions
         }
         public override void Execute()
         {
+            base.Execute();
             //throw new NotImplementedException();
         }
     }

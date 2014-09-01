@@ -12,10 +12,13 @@
     <IgnoreText>ignoreText</IgnoreText>
     <Age>13</Age>
   </ConsoleOutput>-->
-  <GlobalVariables>
+  
+  
+  <!--<GlobalVariables>
     <Name>txy</Name>
     <Age>21</Age>
     <Male>True</Male>
+    <Name2></Name2>
   </GlobalVariables>
   <ConsoleOutput Text="My name is {Name}, and i am {Age} years old"></ConsoleOutput>
   <ConsoleOutput Text="{Age}"></ConsoleOutput>
@@ -24,16 +27,66 @@
     <RequestFile RandomFileName="true" Name="dfa">
       <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
       <Method>Get</Method>
-      <FileName>{Name}.png</FileName>
+      <FileName>{Name2}.png</FileName>
     </RequestFile>
-  </For>
-  <!--<Assignment>
-    <Variable>Name</Variable>
-    <Value>$dfa.OutputFileName</Value>
-  </Assignment>-->
-  <!--<For IterateCount="5">
+    <Assignment>
+      <Variable>Name</Variable>
+      <Value>$dfa.OutputFileName</Value>
+    </Assignment>
     <ConsoleOutput>
       <Text>{Name}</Text>
     </ConsoleOutput>
-  </For>-->
+  </For>
+  <ConsoleInput Name="input">
+    
+  </ConsoleInput>
+  <ConsoleOutput Name="ss">
+    <Text>{Name}</Text>
+  </ConsoleOutput>
+  <Assignment>
+    <Variable>Name</Variable>
+    <Value>$input.OutputString</Value>
+  </Assignment>
+  <ConsoleOutput>
+    <Text>{Name}</Text>
+  </ConsoleOutput>-->
+
+  <GlobalVariables>
+    <Name2></Name2>
+    <VerificationCode></VerificationCode>
+    <Result></Result>
+  </GlobalVariables>
+  <For IterateCount="2">
+    <RequestFile RandomFileName="true" Name="dfa">
+      <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+      <Method>Get</Method>
+      <FileName>.png</FileName>
+    </RequestFile>
+    <Assignment>
+      <Variable>Name2</Variable>
+      <Value>$dfa.OutputFileName</Value>
+    </Assignment>
+    <ShowImage>
+      <FileName>{Name2}</FileName>
+    </ShowImage>
+    <ConsoleInput Name="input">
+      <Text>Please input Verification code...</Text>
+    </ConsoleInput>
+    <Assignment>
+      <Variable>VerificationCode</Variable>
+      <Value>$input.OutputString</Value>
+    </Assignment>
+    <RequestString Name="login">
+      <Url>https://kyfw.12306.cn/otn/login/loginAysnSuggest</Url>
+      <Method>Post</Method>
+      <RequestBody>loginUserDTO.user_name=txyzqc&amp;userDTO.password=1qaz2wsx&amp;randCode={VerificationCode}</RequestBody>
+    </RequestString>
+    <Assignment>
+      <Variable>Result</Variable>
+      <Value>$login.Result</Value>
+    </Assignment>
+    <ConsoleOutput>
+      <Text>{Result}</Text>
+    </ConsoleOutput>
+  </For>
 </Actions>

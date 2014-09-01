@@ -22,22 +22,54 @@ namespace JustTicket.Engining.Actions
 
         public override void Execute()
         {
-            //throw new NotImplementedException();
-            if (!Container.Variables.Variables.ContainsKey(Variable))
-                throw new Exception("No variale found");
+            base.Execute();
+            Action container = Container;
+            Dictionary<string,object> dic = null;
+            while(container !=null)
+            {
+                if (container.Variables.Variables.ContainsKey(Variable))
+                {
+                    dic = container.Variables.Variables;
+                    break;
+                }
+
+                container = container.Container;
+            }
+
+            if (dic == null)
+                throw new Exception("Variable not found");
 
             if (!Value.Contains("$"))
             {
-                Container.Variables.Variables[Variable] = Value;
+                dic[Variable] = Value;
             }
             else
             {
                 string[] strs = Value.Split('.');
                 string actionName = strs[0].TrimStart('$');
                 string propertyName = strs[1];
-                Action action = Container.Actions[actionName];
-                Container.Variables.Variables[Variable] = GetPropertyValue(propertyName, action);
+                
+                Action action = GetActionFromContainer(actionName);
+                dic[Variable] = GetPropertyValue(propertyName, action);
             }
+        }
+
+        private Action GetActionFromContainer(string actionName)
+        {
+            Action container = this.Container;
+            Action action = null;
+            while (container != null)
+            {
+                if(!container.NamedActions.ContainsKey(actionName))
+                {
+                    container = container.Container;
+                    continue;
+                }
+                action = container.NamedActions[actionName];
+                break;
+            }
+
+            return action;
         }
 
         private new object GetPropertyValue(PropertyInfo pi, object obj)

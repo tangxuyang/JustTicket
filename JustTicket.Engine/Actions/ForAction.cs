@@ -16,6 +16,7 @@ namespace JustTicket.Engining.Actions
         }
         public override void Execute()
         {
+            base.Execute();
             //throw new NotImplementedException();
             for(int i = 0 ; i < IterateCount; i++)
             {

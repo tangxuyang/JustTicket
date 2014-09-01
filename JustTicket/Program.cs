@@ -22,7 +22,15 @@ namespace JustTicket
             //
             //Test.TestActionResolve();
 
-            Test.TestEngine2();
+            //try
+            //{
+                Test.TestEngine2();
+            //}
+            //catch(Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    Console.WriteLine(ex.StackTrace);
+            //}
             //XmlDocument doc = new XmlDocument();
             //doc.LoadXml(str);
             //var v = doc.FirstChild;

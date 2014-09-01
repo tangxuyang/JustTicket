@@ -43,13 +43,14 @@ namespace JustTicket.Engining.Actions
 
         public override void Execute()
         {
+            base.Execute();
             string fileName = FileName;
             if(RandomFileName)
             {
                 fileName = DateTime.Now.Ticks + fileName;
             }
 
-            OutputFileName = Container.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;
+            OutputFileName = NetHelper.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;
         }
     }
 }

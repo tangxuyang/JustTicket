@@ -28,6 +28,7 @@ namespace JustTicket.Engining.Actions
         public string RequestBody
         { get; set; }
 
+        [Default(DefaultValue="false")]
         public bool RandomFileName
         {
             get;

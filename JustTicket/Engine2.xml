@@ -180,11 +180,21 @@
     </If>
   </For>
 -->
-  <For IterateCount="5">
-    <For IterateCount="4">
-      <ConsoleOutput>
-        <Text>***###***</Text>
-      </ConsoleOutput>
-    </For>
-  </For>
+
+
+  <GlobalVariables>
+    <Result></Result>
+  </GlobalVariables>
+  <RequestFile RandomFileName="true" Name="city">
+    <Url>https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.806</Url>
+    <Method>Get</Method>
+    <FileName>.txt</FileName>
+  </RequestFile>
+  <Assignment>
+    <Variable>Result</Variable>
+    <Value>$city.OutputFileName</Value>
+  </Assignment>
+  <ConsoleOutput>
+    <Text>{Result}</Text>
+  </ConsoleOutput>
 </Actions>

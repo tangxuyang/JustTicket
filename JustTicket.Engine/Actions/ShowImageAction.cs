@@ -29,7 +29,9 @@ namespace JustTicket.Engining.Actions
             pb.Image = new Bitmap(FileName);
 
             form.Controls.Add(pb);
+            //Application.Run(form);
             form.ShowDialog();
+            
         }
     }
 }

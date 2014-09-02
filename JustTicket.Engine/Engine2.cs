@@ -37,13 +37,45 @@ namespace JustTicket.Engining
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
+            Execute(doc);
+            //XmlElement root = doc.DocumentElement as XmlElement;
 
+            ////ActionContainer container = new ActionContainer();
+            //VirtualAction containerAction = new VirtualAction();
+            //containerAction.Container = null;
+            //foreach(XmlNode node in root.ChildNodes)
+            //{
+            //    if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)//过滤注释和数据元素
+            //        continue;
+            //    string ns = null;
+            //    try
+            //    {
+            //        ns = node.Attributes["Namespace"].Value;
+            //    }
+            //    catch(Exception ex)
+            //    {
+
+            //    }
+
+            //    JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,string.IsNullOrEmpty(ns)?null:ns);
+            //    action.Container = containerAction;
+            //    action.Init(node.OuterXml);
+            //    if(!string.IsNullOrEmpty(action.Name))
+            //    {
+            //        containerAction.NamedActions.Add(action.Name, action);//保存具有名称的action到Dictionary中
+            //    }
+            //    containerAction.ChildActions.Add(action);
+            //    action.Execute();
+            //}
+        }
+
+        private void Execute(XmlDocument doc)
+        {
             XmlElement root = doc.DocumentElement as XmlElement;
 
-            //ActionContainer container = new ActionContainer();
             VirtualAction containerAction = new VirtualAction();
             containerAction.Container = null;
-            foreach(XmlNode node in root.ChildNodes)
+            foreach (XmlNode node in root.ChildNodes)
             {
                 if (node.NodeType == XmlNodeType.Comment || node.NodeType == XmlNodeType.CDATA)//过滤注释和数据元素
                     continue;
@@ -52,21 +84,28 @@ namespace JustTicket.Engining
                 {
                     ns = node.Attributes["Namespace"].Value;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                 }
 
-                JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name,string.IsNullOrEmpty(ns)?null:ns);
+                JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name, string.IsNullOrEmpty(ns) ? null : ns);
                 action.Container = containerAction;
                 action.Init(node.OuterXml);
-                if(!string.IsNullOrEmpty(action.Name))
+                if (!string.IsNullOrEmpty(action.Name))
                 {
                     containerAction.NamedActions.Add(action.Name, action);//保存具有名称的action到Dictionary中
                 }
                 containerAction.ChildActions.Add(action);
                 action.Execute();
             }
+        }
+
+        public void Execute(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            Execute(doc);
         }
     }
 }

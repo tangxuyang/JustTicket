@@ -43,17 +43,31 @@
             this.btn_Search = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tb_TrainFilter = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tb_UserName = new System.Windows.Forms.TextBox();
+            this.tb_VerificationCode = new System.Windows.Forms.TextBox();
+            this.btn_GetVerification = new System.Windows.Forms.Button();
+            this.pb_VerificationCode = new System.Windows.Forms.PictureBox();
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.tb_Password = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_Main
             // 
             this.tb_Main.Controls.Add(this.tabPage1);
             this.tb_Main.Controls.Add(this.tabPage2);
+            this.tb_Main.Controls.Add(this.tabPage3);
             this.tb_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Main.Location = new System.Drawing.Point(0, 0);
             this.tb_Main.Name = "tb_Main";
@@ -197,6 +211,112 @@
             this.tb_TrainFilter.TabIndex = 4;
             this.tb_TrainFilter.TextChanged += new System.EventHandler(this.tb_TrainSearch_TextChanged);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Controls.Add(this.btn_Login);
+            this.tabPage3.Controls.Add(this.pb_VerificationCode);
+            this.tabPage3.Controls.Add(this.btn_GetVerification);
+            this.tabPage3.Controls.Add(this.tb_VerificationCode);
+            this.tabPage3.Controls.Add(this.tb_Password);
+            this.tabPage3.Controls.Add(this.tb_UserName);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(618, 568);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Passengers";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(49, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "UserName:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(51, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Password:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(51, 135);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 12);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "VerificationCode:";
+            // 
+            // tb_UserName
+            // 
+            this.tb_UserName.Location = new System.Drawing.Point(190, 33);
+            this.tb_UserName.Name = "tb_UserName";
+            this.tb_UserName.Size = new System.Drawing.Size(100, 21);
+            this.tb_UserName.TabIndex = 3;
+            this.tb_UserName.Text = "tangxuyang.hi@163.com";
+            // 
+            // tb_VerificationCode
+            // 
+            this.tb_VerificationCode.Location = new System.Drawing.Point(190, 126);
+            this.tb_VerificationCode.Name = "tb_VerificationCode";
+            this.tb_VerificationCode.Size = new System.Drawing.Size(100, 21);
+            this.tb_VerificationCode.TabIndex = 3;
+            // 
+            // btn_GetVerification
+            // 
+            this.btn_GetVerification.Location = new System.Drawing.Point(444, 126);
+            this.btn_GetVerification.Name = "btn_GetVerification";
+            this.btn_GetVerification.Size = new System.Drawing.Size(65, 23);
+            this.btn_GetVerification.TabIndex = 4;
+            this.btn_GetVerification.Text = "Refresh";
+            this.btn_GetVerification.UseVisualStyleBackColor = true;
+            this.btn_GetVerification.Click += new System.EventHandler(this.btn_GetVerification_Click);
+            // 
+            // pb_VerificationCode
+            // 
+            this.pb_VerificationCode.Location = new System.Drawing.Point(327, 126);
+            this.pb_VerificationCode.Name = "pb_VerificationCode";
+            this.pb_VerificationCode.Size = new System.Drawing.Size(100, 50);
+            this.pb_VerificationCode.TabIndex = 5;
+            this.pb_VerificationCode.TabStop = false;
+            // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(444, 186);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(65, 23);
+            this.btn_Login.TabIndex = 6;
+            this.btn_Login.Text = "Login";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            // 
+            // tb_Password
+            // 
+            this.tb_Password.Location = new System.Drawing.Point(190, 76);
+            this.tb_Password.Name = "tb_Password";
+            this.tb_Password.PasswordChar = '*';
+            this.tb_Password.Size = new System.Drawing.Size(100, 21);
+            this.tb_Password.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(25, 232);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(563, 100);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Passengers";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -212,6 +332,9 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,6 +356,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_TrainFilter;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox tb_VerificationCode;
+        private System.Windows.Forms.TextBox tb_UserName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pb_VerificationCode;
+        private System.Windows.Forms.Button btn_GetVerification;
+        private System.Windows.Forms.Button btn_Login;
+        private System.Windows.Forms.TextBox tb_Password;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustTicket.Tools
+namespace JustTicket.Tools.DTO
 {
     public class DTOHelper
     {
@@ -47,7 +47,5 @@ namespace JustTicket.Tools
 
             return list;
         }
-
-         
     }
 }

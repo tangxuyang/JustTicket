@@ -16,7 +16,6 @@ namespace JustTicket.Tools
     public partial class Form1 : Form
     {
         Engine2 engine;
-        private List<PassengerDTO> passengers;
         public Form1()
         {
             InitializeComponent();
@@ -104,8 +103,6 @@ namespace JustTicket.Tools
             //string queryLeftNewDTOStr;
             DataTable dt = new DataTable();
             dt.Columns.Add("车次");
-            dt.Columns.Add("YP_Info");
-            dt.Columns.Add("Location_Code");
             dt.Columns.Add("出发站_到达站");
             dt.Columns.Add("出发时间");
             dt.Columns.Add("历时");
@@ -133,8 +130,6 @@ namespace JustTicket.Tools
                 //QueryLeftNewDTO dto = new QueryLeftNewDTO(queryLeftNewDTOStr);
                 DataRow row = dt.NewRow();
                 row["车次"] = dto.Station_Train_Code;
-                row["YP_Info"] = dto.YP_Info;
-                row["Location_Code"] = dto.Location_Code;
                 row["出发站_到达站"] = dto.From_Station_Name + "-" + dto.To_Station_Name;
                 row["出发时间"] = dto.Start_Time;
                 row["历时"] = dto.LiShi;
@@ -187,101 +182,6 @@ namespace JustTicket.Tools
             string userName = tb_UserName.Text;
             string password = tb_Password.Text;
             string verificationCode = tb_VerificationCode.Text;
-            string requestBody = string.Format("loginUserDTO.user_name={0}&amp;userDTO.password={1}&amp;randCode={2}",userName,password,verificationCode);
-            string action = @"
-            <actions>
-                <GlobalVariables>
-                    <Result></Result>
-                </GlobalVariables>
-                <RequestString Name=""login"">
-                    <Url>https://kyfw.12306.cn/otn/login/loginAysnSuggest</Url>
-                    <Method>Post</Method>
-                        <RequestBody>"+requestBody+"</RequestBody>"+
-            @"</RequestString>
-            <Assignment>
-                <Variable>Result</Variable>
-                <Value>$login.Result</Value>
-            </Assignment>
-            <StringReplace Name=""sr"">
-              <SourceString>{Result}</SourceString>
-              <OldString>&quot;</OldString>
-              <NewString>\&quot;</NewString>
-            </StringReplace>
-            <Assignment>
-              <Variable>Result</Variable>
-              <Value>$sr.ResultString</Value>
-            </Assignment>
-            <If Condition=""&quot;{Result}&quot;.Contains(&quot;\&quot;loginCheck\&quot;:\&quot;Y\&quot;&quot;)"">
-              <Begin>
-                <DownFile IsDeleteExist=""true"">
-                  <Url>
-                    https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs
-                  </Url>
-                  <Method>Post</Method>
-                  <FileName>passengers.txt</FileName>
-                </DownFile>
-              </Begin>
-            </If>
-   </actions>";
-
-            engine.Execute(action);
-
-            string fileName = "passengers.txt";
-            if (File.Exists(fileName))
-            {
-                FileStream fs = new FileStream(fileName, FileMode.Open);
-                StreamReader sr = new StreamReader(fs);
-                string content = sr.ReadToEnd();
-                sr.Close();
-                //normal_passengers
-                int index = content.IndexOf("normal_passengers");
-                index = content.IndexOf('[', index);//find [ index
-                int index2 = content.IndexOf(']', index);
-                content = content.Substring(index, index2 - index + 1);
-
-                passengers = DTOHelper.GetDTOs<PassengerDTO>(content);
-
-                #region 显示在DataGridView中
-
-                //DataTable dt = new DataTable();
-                //dt.Columns.Add("Name");
-                //dt.Columns.Add("Sex");
-
-                //DataRow row;
-                //foreach(var passenger in passengers)
-                //{
-                //    row = dt.NewRow();
-                //    row["Name"] = passenger.Passenger_Name;
-                //    row["Sex"] = passenger.Sex_Name;
-                //    dt.Rows.Add(row);
-                //}
-
-                //BindingSource bs = new BindingSource();
-                //bs.DataSource = dt;
-                //dataGridView3.DataSource = bs;
-                #endregion
-
-                int i = 0;
-                index = 0;
-                int top = 20;
-                foreach(var passenger in passengers)
-                {
-                    CheckBox cb = new CheckBox();
-                    cb.Width = 80;
-                    if((80*i+20)>groupBox1.Width-20)
-                    {
-                        top += 20;
-                        i = 0;
-                    }
-                    cb.Left = 80*i+20;
-                    cb.Top = top;
-                    cb.Text = passenger.Passenger_Name;
-                    cb.Name = index.ToString();
-                    groupBox1.Controls.Add(cb);
-                    i++;
-                    index++;
-                }
-            }
         }
     }    
 }

@@ -42,6 +42,13 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
+        [Default(DefaultValue = "false")]
+        public bool IsDeleteExist
+        {
+            get;
+            set;
+        }
+
         public override void Execute()
         {
             base.Execute();
@@ -49,6 +56,11 @@ namespace JustTicket.Engining.Actions
             if(RandomFileName)
             {
                 fileName = DateTime.Now.Ticks + fileName;
+            }
+
+            if(IsDeleteExist && System.IO.File.Exists(fileName))
+            {
+                System.IO.File.Delete(fileName);
             }
 
             OutputFileName = NetHelper.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;

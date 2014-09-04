@@ -7,6 +7,7 @@ using JustTicket.Logic;
 
 namespace JustTicket.Engining
 {
+    [Obsolete("请使用Engine2")]
     public class Engine : IEngine
     {
         private string fileName;//Engine file which is xml format
@@ -44,6 +45,9 @@ namespace JustTicket.Engining
             }
         }
 
+        /// <summary>
+        /// 引擎文件
+        /// </summary>
         public string FileName
         {
             get

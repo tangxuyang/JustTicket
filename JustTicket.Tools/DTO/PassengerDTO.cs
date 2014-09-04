@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace JustTicket.Tools.DTO
 {
+    /// <summary>
+    /// 乘客DTO
+    /// </summary>
     public class PassengerDTO : DTO
     {
         public string Code
@@ -20,6 +23,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客名字
+        /// </summary>
         public string Passenger_Name
         {
             get
@@ -32,6 +38,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 性别编码
+        /// </summary>
         public string Sex_Code
         {
             get
@@ -44,6 +53,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 性别名称
+        /// </summary>
         public string Sex_Name
         {
             get
@@ -56,6 +68,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 出生日期
+        /// </summary>
         public string Born_Date
         {
             get
@@ -68,6 +83,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 国家编码
+        /// </summary>
         public string Country_Code
         {
             get
@@ -80,6 +98,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客ID类型编码
+        /// </summary>
         public string Passenger_ID_Type_Code
         {
             get
@@ -92,6 +113,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客ID类型名称
+        /// </summary>
         public string Passenger_ID_Type_Name
         {
             get
@@ -104,6 +128,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客ID号
+        /// </summary>
         public string Passenger_ID_NO
         {
             get
@@ -116,6 +143,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客类型
+        /// </summary>
         public string Passenger_Type
         {
             get
@@ -128,6 +158,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客标识
+        /// </summary>
         public string Passenger_Flag
         {
             get
@@ -140,6 +173,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客类型名称
+        /// </summary>
         public string Passenger_Type_Name
         {
             get
@@ -152,6 +188,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客手机号
+        /// </summary>
         public string Mobile_NO
         {
             get
@@ -164,6 +203,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客电话号
+        /// </summary>
         public string Phone_NO
         {
             get
@@ -176,6 +218,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客电子邮箱
+        /// </summary>
         public string Email
         {
             get
@@ -188,6 +233,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客地址
+        /// </summary>
         public string Address
         {
             get
@@ -200,6 +248,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客姓名拼音首字母
+        /// </summary>
         public string First_Letter
         {
             get
@@ -212,6 +263,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 乘客。。。
+        /// </summary>
         public string Total_Times
         {
             get
@@ -224,6 +278,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 。。。
+        /// </summary>
         public string Index_ID
         {
             get

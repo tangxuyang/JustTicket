@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustTicket.Tools", "JustTic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6DDD172-D553-44AD-B044-5B63FA5B7E5C}"
 	ProjectSection(SolutionItems) = preProject
+		Design.txt = Design.txt
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject

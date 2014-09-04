@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JustTicket
 {
+    /// <summary>
+    /// 使用的字符串常量
+    /// </summary>
     public class Strings
     {
         public const string LoginUrl = "https://kyfw.12306.cn/otn/login/loginAysnSuggest";

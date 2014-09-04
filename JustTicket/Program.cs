@@ -17,24 +17,8 @@ namespace JustTicket
     {
         static void Main(string[] args)
         {
-            //TestToXml();
-            //Test.TestReadXml();
-            //
-            //Test.TestActionResolve();
-
-            //try
-            //{
-                Test.TestEngine2();
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    Console.WriteLine(ex.StackTrace);
-            //}
-            //XmlDocument doc = new XmlDocument();
-            //doc.LoadXml(str);
-            //var v = doc.FirstChild;
-
+            Test.TestEngine2();
+             
             Console.WriteLine("over....");
             Console.ReadLine();
         }

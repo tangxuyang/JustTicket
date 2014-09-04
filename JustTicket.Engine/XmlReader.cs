@@ -13,6 +13,7 @@ namespace JustTicket.Engining
     /// 理想情况是想把这个类写成一个功能强大的组件，
     /// 用来解析JustTicket的流程文件。
     /// </summary>
+    [Obsolete("与Engine一起废弃")]
     public class XmlReader
     {
         /// <summary>

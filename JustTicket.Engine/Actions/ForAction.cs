@@ -8,6 +8,9 @@ namespace JustTicket.Engining.Actions
 {
     public class ForAction : ComponentAction
     {
+        /// <summary>
+        /// 执行的次数
+        /// </summary>
         [Default(DefaultValue="1")]
         public int IterateCount
         {

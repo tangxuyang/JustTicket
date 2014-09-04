@@ -6,6 +6,9 @@ using JustTicket.Net;
 
 namespace JustTicket.Logic
 {
+    /// <summary>
+    /// 请求Block
+    /// </summary>
     public class RequestBlock : Block
     {
         /// <summary>

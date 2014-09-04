@@ -11,23 +11,38 @@ namespace JustTicket.Engining.Actions
     [Map(AliasName="DownFileAction")]
     public class RequestFileAction : Action
     {
+        /// <summary>
+        /// 文件名
+        /// </summary>
         public string FileName
         { set; get; }
 
+        /// <summary>
+        /// 请求的方式，Get或Post
+        /// </summary>
         [Default(DefaultValue="Get")]
         public string Method
         { get; set; }
 
+        /// <summary>
+        /// 请求的地址
+        /// </summary>
         public string Url
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 请求的Body，Post使用
+        /// </summary>
         [Default(DefaultValue="")]
         public string RequestBody
         { get; set; }
 
+        /// <summary>
+        /// 是否随机生成文件名
+        /// </summary>
         [Default(DefaultValue="false")]
         public bool RandomFileName
         {
@@ -35,6 +50,9 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
+        /// <summary>
+        /// 保存后文件的全路径
+        /// </summary>
         [Ignore]
         public string OutputFileName
         {
@@ -42,6 +60,9 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
+        /// <summary>
+        /// 如果FileName指定的文件存在是否先删除
+        /// </summary>
         [Default(DefaultValue = "false")]
         public bool IsDeleteExist
         {
@@ -49,16 +70,19 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
+        /// <summary>
+        /// 执行
+        /// </summary>
         public override void Execute()
         {
             base.Execute();
             string fileName = FileName;
-            if(RandomFileName)
+            if(RandomFileName)//产生随机文件名
             {
                 fileName = DateTime.Now.Ticks + fileName;
             }
 
-            if(IsDeleteExist && System.IO.File.Exists(fileName))
+            if(IsDeleteExist && System.IO.File.Exists(fileName))//删除已存在同名文件
             {
                 System.IO.File.Delete(fileName);
             }

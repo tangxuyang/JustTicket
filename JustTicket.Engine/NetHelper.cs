@@ -7,6 +7,9 @@ using JustTicket.Logic;
 
 namespace JustTicket.Engining
 {
+    /// <summary>
+    /// 网络通信帮助类
+    /// </summary>
     public class NetHelper
     {
         private static HttpCommunicator communicator;

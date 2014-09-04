@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JustTicket.Logic
 {
+    /// <summary>
+    /// Block类型枚举
+    /// </summary>
     public enum BlockType
     {
         RequestBlock,

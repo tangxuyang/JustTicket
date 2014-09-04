@@ -8,6 +8,9 @@ using JustTicket.Engining.Attributes;
 
 namespace JustTicket.Engining.Actions
 {
+    /// <summary>
+    /// 动作的基类
+    /// </summary>
     public abstract class Action
     {
         public virtual void Execute()
@@ -95,6 +98,7 @@ namespace JustTicket.Engining.Actions
         {
             this.xml = xml;
         }
+       
         protected virtual void Init()
         {
             XmlElement ele = GetRootNode(xml) as XmlElement;

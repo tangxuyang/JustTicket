@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JustTicket.Logic
 {
+    /// <summary>
+    /// 逻辑Block
+    /// </summary>
     public class LogicBlock : Block
     {
 

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace JustTicket.Tools.DTO
 {
+    /// <summary>
+    /// 车次DTO
+    /// </summary>
     public class QueryLeftNewDTO : DTO
     {
+        /// <summary>
+        /// 车号，类似240000G10106，页面不可见
+        /// </summary>
         public string Train_NO
         {
             get
@@ -20,6 +26,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 车次号，通常使用的，如K154 
+        /// </summary>
         public string Station_Train_Code
         {
             get
@@ -32,6 +41,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Start_Station_Telecode
         {
             get
@@ -44,6 +56,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 始发站名字
+        /// </summary>
         public string Start_Station_Name
         {
             get
@@ -56,6 +71,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 终点站。。。
+        /// </summary>
         public string End_Station_Telecode
         {
             get
@@ -68,6 +86,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 终点站名字
+        /// </summary>
         public string End_Station_Name
         {
             get
@@ -92,6 +113,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 出发站名字
+        /// </summary>
         public string From_Station_Name
         {
             get
@@ -116,6 +140,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 目的地站名字
+        /// </summary>
         public string To_Station_Name
         {
             get
@@ -128,6 +155,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 开始时间
+        /// </summary>
         public string Start_Time
         {
             get
@@ -140,6 +170,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 到达时间
+        /// </summary>
         public string Arrive_Time
         {
             get
@@ -177,6 +210,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 历时
+        /// </summary>
         public string LiShi
         {
             get
@@ -189,6 +225,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 可否晚上买
+        /// </summary>
         public bool CanWebBuy
         {
             get
@@ -219,6 +258,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 猜测，余票欣喜
+        /// </summary>
         public string YP_Info
         {
             get
@@ -396,6 +438,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 软座数
+        /// </summary>
         public string RZ_Num
         {
             get
@@ -408,6 +453,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 硬卧数
+        /// </summary>
         public string YW_Num
         {
             get
@@ -420,6 +468,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 软卧数
+        /// </summary>
         public string RW_Num
         {
             get
@@ -432,6 +483,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 不清楚
+        /// </summary>
         public string GR_Num
         {
             get
@@ -444,6 +498,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 一等座数
+        /// </summary>
         public string ZY_Num
         {
             get
@@ -456,6 +513,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 二等座数
+        /// </summary>
         public string ZE_Num
         {
             get
@@ -468,6 +528,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 特等座数
+        /// </summary>
         public string TZ_Num
         {
             get
@@ -480,6 +543,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 高级软卧数
+        /// </summary>
         public string GG_Num
         {
             get
@@ -492,6 +558,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 不清楚
+        /// </summary>
         public string YB_Num
         {
             get
@@ -504,6 +573,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 无座数
+        /// </summary>
         public string WZ_Num
         {
             get
@@ -516,6 +588,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 其他数
+        /// </summary>
         public string QT_Num
         {
             get
@@ -528,6 +603,9 @@ namespace JustTicket.Tools.DTO
             }
         }
 
+        /// <summary>
+        /// 商务座
+        /// </summary>
         public string SWZ_Num
         {
             get

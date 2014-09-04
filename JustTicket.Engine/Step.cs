@@ -7,6 +7,7 @@ using JustTicket.Engining.Attributes;
 
 namespace JustTicket.Engining
 {
+    [Obsolete("与Engine一起废弃")]
     public class Step
     {
         [Default(DefaultValue="GET")]

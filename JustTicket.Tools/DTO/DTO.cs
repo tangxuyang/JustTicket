@@ -9,6 +9,7 @@ namespace JustTicket.Tools.DTO
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("使用json.net")]
     public class DTO
     {
         protected Dictionary<string, string> datas;

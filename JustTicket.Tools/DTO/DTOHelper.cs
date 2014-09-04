@@ -15,6 +15,7 @@ namespace JustTicket.Tools.DTO
         /// <typeparam name="T"></typeparam>
         /// <param name="str"></param>
         /// <returns></returns>
+        [Obsolete("使用json.net")]
         public static List<T> GetDTOs<T>(string str) where T : DTO
         {
             //[{},{},{}]

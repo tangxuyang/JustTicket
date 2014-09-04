@@ -9,6 +9,7 @@ namespace JustTicket.Tools.DTO
     /// <summary>
     /// 车次DTO
     /// </summary>
+    [Obsolete("使用json.net")]
     public class QueryLeftNewDTO : DTO
     {
         /// <summary>

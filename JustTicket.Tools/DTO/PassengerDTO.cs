@@ -9,6 +9,7 @@ namespace JustTicket.Tools.DTO
     /// <summary>
     /// 乘客DTO
     /// </summary>
+    [Obsolete("使用json.net")]
     public class PassengerDTO : DTO
     {
         public string Code

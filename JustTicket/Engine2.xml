@@ -125,8 +125,8 @@
     <Result></Result>
   </GlobalVariables>
   
-  <!--<For IterateCount="2">-->
-    <!--<GlobalVariables>
+  <For IterateCount="2">
+    <GlobalVariables>
       <LocalResult></LocalResult>
     </GlobalVariables>
     <RequestFile RandomFileName="true" Name="dfa">
@@ -170,22 +170,24 @@
       <Begin>
         <ConsoleOutput>
           <Text>Login succeded...</Text>
-        </ConsoleOutput>-->
-        <DownFile IsDeleteExist="true">
+        </ConsoleOutput>
+        <>
+        <!--<DownFile IsDeleteExist="true">
           <Url>
             https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs
           </Url>
           <Method>Post</Method>
           <FileName>passengers.txt</FileName>
-        </DownFile>
-      <!--</Begin>
+        </DownFile>-->
+      
+      </Begin>
       <Else>
         <ConsoleOutput>
           <Text>Login failed...</Text>
         </ConsoleOutput>
       </Else>
     </If>
-  </For>-->
+  </For>
 <!---->
 
 

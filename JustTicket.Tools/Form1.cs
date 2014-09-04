@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using JustTicket.Engining;
 using System.IO;
 using JustTicket.Tools.DTO;
+using Newtonsoft.Json;
 
 namespace JustTicket.Tools
 {
@@ -106,6 +107,7 @@ namespace JustTicket.Tools
             dt.Columns.Add("车次");
             dt.Columns.Add("YP_Info");
             dt.Columns.Add("Location_Code");
+
             dt.Columns.Add("出发站_到达站");
             dt.Columns.Add("出发时间");
             dt.Columns.Add("历时");
@@ -127,28 +129,37 @@ namespace JustTicket.Tools
             //    right = trains.IndexOf("}", index) - 1;
             //    length = right - left;
             //    queryLeftNewDTOStr = trains.Substring(left + 1, length);
-            List<QueryLeftNewDTO> dtos = DTOHelper.GetDTOPartialInArrayItem<QueryLeftNewDTO>(trains, "queryLeftNewDTO");
+            //List<QueryLeftNewDTO> dtos = DTOHelper.GetDTOPartialInArrayItem<QueryLeftNewDTO>(trains, "queryLeftNewDTO");
+            var data = JsonConvert.DeserializeObject<TrainsSearchResultDTO>(trains).data;
+
+            List<QueryLeftNewDTO2> dtos = new List<QueryLeftNewDTO2>();
+            foreach(var v in data)
+            {
+                dtos.Add(v.queryLeftNewDTO);
+
+            }
+
             foreach (var dto in dtos)
             {
                 //QueryLeftNewDTO dto = new QueryLeftNewDTO(queryLeftNewDTOStr);
                 DataRow row = dt.NewRow();
-                row["车次"] = dto.Station_Train_Code;
-                row["YP_Info"] = dto.YP_Info;
-                row["Location_Code"] = dto.Location_Code;
-                row["出发站_到达站"] = dto.From_Station_Name + "-" + dto.To_Station_Name;
-                row["出发时间"] = dto.Start_Time;
-                row["历时"] = dto.LiShi;
-                row["商务座"] = dto.SWZ_Num;
-                row["特等座"] = dto.TZ_Num;
-                row["一等座"] = dto.ZY_Num;
-                row["二等座"] = dto.ZE_Num;
-                row["高级软卧"] = dto.GG_Num;
-                row["软卧"] = dto.RW_Num;
-                row["硬卧"] = dto.YW_Num;
-                row["软座"] = dto.RZ_Num;
-                row["硬座"] = dto.YZ_Num;
-                row["无座"] = dto.WZ_Num;
-                row["其他"] = dto.QT_Num;
+                row["车次"] = dto.station_train_code;
+                row["YP_Info"] = dto.yp_info;
+                row["Location_Code"] = dto.location_code;
+                row["出发站_到达站"] = dto.from_station_name + "-" + dto.to_station_name;
+                row["出发时间"] = dto.start_time;
+                row["历时"] = dto.lishi;
+                row["商务座"] = dto.swz_num;
+                row["特等座"] = dto.tz_num;
+                row["一等座"] = dto.zy_num;
+                row["二等座"] = dto.ze_num;
+                row["高级软卧"] = dto.gg_num;
+                row["软卧"] = dto.rw_num;
+                row["硬卧"] = dto.yw_num;
+                row["软座"] = dto.rz_num;
+                row["硬座"] = dto.yz_num;
+                row["无座"] = dto.wz_num;
+                row["其他"] = dto.qt_num;
                 dt.Rows.Add(row);
             }
             //    index = right;

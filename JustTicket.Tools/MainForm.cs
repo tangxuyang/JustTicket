@@ -18,6 +18,7 @@ namespace JustTicket.Tools
     {
         Engine2 engine;
         private List<NormalPassengerDTO> passengers;
+        private bool isLogin = false;
         public MainForm()
         {
             InitializeComponent();
@@ -186,45 +187,88 @@ namespace JustTicket.Tools
             string password = tb_Password.Text;
             string verificationCode = tb_VerificationCode.Text;
             string requestBody = string.Format("loginUserDTO.user_name={0}&amp;userDTO.password={1}&amp;randCode={2}",userName,password,verificationCode);
+            string fileName = DateTime.Now.Ticks + "LoginResult.txt";
+            
+            //
+            string[] files = Directory.GetFiles(".","*LoginResult.txt");
+            if(files!=null && files.Length>0)
+            {
+                foreach(string file in files)
+                {
+                    File.Decrypt(file);
+                }
+            }
+
             string action = @"
             <actions>
                 <GlobalVariables>
                     <Result></Result>
                 </GlobalVariables>
-                <RequestString Name=""login"">
+                <RequestFile Name=""login"">
                     <Url>https://kyfw.12306.cn/otn/login/loginAysnSuggest</Url>
                     <Method>Post</Method>
-                        <RequestBody>"+requestBody+"</RequestBody>"+
-            @"</RequestString>
-            <Assignment>
-                <Variable>Result</Variable>
-                <Value>$login.Result</Value>
-            </Assignment>
-            <StringReplace Name=""sr"">
-              <SourceString>{Result}</SourceString>
-              <OldString>&quot;</OldString>
-              <NewString>\&quot;</NewString>
-            </StringReplace>
-            <Assignment>
-              <Variable>Result</Variable>
-              <Value>$sr.ResultString</Value>
-            </Assignment>
-            <If Condition=""&quot;{Result}&quot;.Contains(&quot;\&quot;loginCheck\&quot;:\&quot;Y\&quot;&quot;)"">
-              <Begin>
+                    <RequestBody>"+requestBody+@"</RequestBody>
+                    <FileName>"+fileName+"</FileName>"+
+            @"</RequestFile>
+            </actions>";
+
+            engine.Execute(action);
+
+            //string fileName = "passengers.txt";
+            if (File.Exists(fileName))
+            {
+                FileStream fs = new FileStream(fileName, FileMode.Open);
+                StreamReader sr = new StreamReader(fs);
+                string content = sr.ReadToEnd();
+
+                var loginResult = JsonConvert.DeserializeObject<LoginResultDTO>(content);
+
+
+                if(loginResult.data.loginCheck!=null && loginResult.data.loginCheck =="Y")
+                {
+                    lb_LoginResult.Text = "登陆成功";
+                    isLogin = true;
+                }
+                else
+                {
+                    lb_LoginResult.Text = "登陆失败";
+                    isLogin = false;
+                }
+            }
+        }
+
+        private void btn_GetPassenger_Click(object sender, EventArgs e)
+        {
+            if(!isLogin)
+            {
+                MessageBox.Show("请先登陆！");
+                return;
+            }
+
+            string[] files = Directory.GetFiles(".", "*passengers.txt");
+            if(files!=null && files.Length>0)
+            {
+                foreach(string file in files)
+                {
+                    File.Delete(file);
+                }
+            }
+
+            string fileName = DateTime.Now.Ticks+ "passengers.txt";
+            string action = @"
+            <actions>
                 <DownFile IsDeleteExist=""true"">
                   <Url>
                     https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs
                   </Url>
                   <Method>Post</Method>
-                  <FileName>passengers.txt</FileName>
+                  <FileName>"+fileName+@"</FileName>
                 </DownFile>
-              </Begin>
-            </If>
    </actions>";
 
             engine.Execute(action);
 
-            string fileName = "passengers.txt";
+            
             if (File.Exists(fileName))
             {
                 FileStream fs = new FileStream(fileName, FileMode.Open);
@@ -234,39 +278,20 @@ namespace JustTicket.Tools
                 //normal_passengers
                 passengers = JsonConvert.DeserializeObject<PassengerResultDTO>(content).data.normal_passengers;
 
-                #region 显示在DataGridView中
-
-                //DataTable dt = new DataTable();
-                //dt.Columns.Add("Name");
-                //dt.Columns.Add("Sex");
-
-                //DataRow row;
-                //foreach(var passenger in passengers)
-                //{
-                //    row = dt.NewRow();
-                //    row["Name"] = passenger.Passenger_Name;
-                //    row["Sex"] = passenger.Sex_Name;
-                //    dt.Rows.Add(row);
-                //}
-
-                //BindingSource bs = new BindingSource();
-                //bs.DataSource = dt;
-                //dataGridView3.DataSource = bs;
-                #endregion
-
                 int i = 0;
                 int index = 0;
                 int top = 20;
-                foreach(var passenger in passengers)
+                groupBox1.Controls.Clear();
+                foreach (var passenger in passengers)
                 {
                     CheckBox cb = new CheckBox();
                     cb.Width = 80;
-                    if((80*i+20)>groupBox1.Width-20)
+                    if ((80 * i + 20) > groupBox1.Width - 20)
                     {
                         top += 20;
                         i = 0;
                     }
-                    cb.Left = 80*i+20;
+                    cb.Left = 80 * i + 20;
                     cb.Top = top;
                     cb.Text = passenger.passenger_name;
                     cb.Name = index.ToString();

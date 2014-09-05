@@ -171,7 +171,18 @@
         <ConsoleOutput>
           <Text>Login succeded...</Text>
         </ConsoleOutput>
-        <>
+        <RequestString Name="rs">
+          <Method>Post</Method>
+          <Url>https://kyfw.12306.cn/otn/confirmPassenger/getQueueCount</Url>
+          <RequestBody>train_date=Thu+Sep+11+00%3A00%3A00+UTC%2B0800+2014&amp;train_no=550000K29051&amp;stationTrainCode=K290&amp;seatType=3&amp;fromStationTelecode=SHH&amp;toStationTelecode=SQF&amp;purpose_codes=00</RequestBody>
+        </RequestString>
+        <Assignment>
+          <Variable>Result</Variable>
+          <Value>$rs.Result</Value>
+        </Assignment>
+        <ConsoleOutput>
+          <Text>{Result}</Text>
+        </ConsoleOutput>
         <!--<DownFile IsDeleteExist="true">
           <Url>
             https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs

@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="DTO\DTO.cs" />
     <Compile Include="DTO\DTOHelper.cs" />
+    <Compile Include="DTO\LoginResultDataDTO.cs" />
+    <Compile Include="DTO\LoginResultDTO.cs" />
     <Compile Include="DTO\NormalPassengerDTO.cs" />
     <Compile Include="DTO\PassengerResultDataDTO.cs" />
     <Compile Include="DTO\PassengerResultDTO.cs" />

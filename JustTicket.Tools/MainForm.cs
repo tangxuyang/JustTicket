@@ -18,6 +18,7 @@ namespace JustTicket.Tools
     {
         Engine2 engine;
         private List<NormalPassengerDTO> passengers;
+        private List<QueryLeftNewDTO2> trains;
         private bool isLogin = false;
         public MainForm()
         {
@@ -123,10 +124,10 @@ namespace JustTicket.Tools
             var data = JsonConvert.DeserializeObject<TrainsSearchResultDTO>(trains).data;
 
             List<QueryLeftNewDTO2> dtos = new List<QueryLeftNewDTO2>();
+            this.trains = dtos;
             foreach(var v in data)
             {
                 dtos.Add(v.queryLeftNewDTO);
-
             }
 
             foreach (var dto in dtos)
@@ -300,6 +301,49 @@ namespace JustTicket.Tools
                     index++;
                 }
             }
+        }
+
+        private void btn_Buy_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count < 1)
+                return;
+
+            var row = dataGridView2.SelectedRows[0];
+            var cell = row.Cells[0];
+            string station_train_code = cell.Value.ToString();
+            QueryLeftNewDTO2 train = trains.Single(d => d.station_train_code == station_train_code);
+            string url ="https://kyfw.12306.cn/otn/confirmPassenger/getQueueCount";
+            string requestBody = "train_date="+train.train_date+"&amp;train_no="+train.train_no+"&amp;stationTrainCode="+train.station_train_code+"&amp;seatType=3&amp;fromStationTelecode="+train.from_station_telecode+"&amp;toStationTelecode="+train.to_station_telecode+"&amp;leftTicket="+train.yp_info+"&amp;purpose_codes=00";
+
+            string[] files = Directory.GetFiles(".", "*getQueueCount.txt");
+            if(files!=null && files.Length>0)
+            {
+                foreach(var file in files)
+                {
+                    File.Delete(file);
+                }
+            }
+
+            string fileName = DateTime.Now.Ticks+ "getQueueCount.txt";
+            string action = "<actions><DownFile><Method>Post</Method><Url>"+url+"</Url><RequestBody>"+requestBody+"</RequestBody><FileName>"+fileName+"</FileName></DownFile></actions>";
+
+            engine.Execute(action);
+            
+            if(File.Exists(fileName))
+            {
+                FileStream fs = new FileStream(fileName, FileMode.Open);
+                StreamReader sr = new StreamReader(fs);
+                string content = sr.ReadToEnd();
+
+                MessageBox.Show(content);
+
+
+            }
+        }
+
+        private void btn_CheckOrderInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }    
 }

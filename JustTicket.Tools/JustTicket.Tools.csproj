@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DTO\DTO.cs" />
     <Compile Include="DTO\DTOHelper.cs" />
+    <Compile Include="DTO\LimitTicketDTO.cs" />
     <Compile Include="DTO\LoginResultDataDTO.cs" />
     <Compile Include="DTO\LoginResultDTO.cs" />
     <Compile Include="DTO\NormalPassengerDTO.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="DTO\QueryLeftNewDTO2.cs" />
     <Compile Include="DTO\TrainsSearchResultDTO.cs" />
     <Compile Include="DTO\TrainsSearchResultItemDTO.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

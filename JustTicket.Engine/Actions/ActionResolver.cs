@@ -35,11 +35,15 @@ namespace JustTicket.Engining
             localNS = ns==null?null:ns.ToLower();
 
             var types = actions.Where(t => (t.Name.ToLower() == localActionName || GetActionMapping(t).ToLower().Contains(localActionName)) && (string.IsNullOrEmpty(localNS) || t.Namespace.ToLower() == localNS)).ToList();
-            if (types == null)
-                return null;
+            if (types == null || types.Count == 0)
+            {
+                throw new Exception("No action "+localActionName);
+            }
 
             if (types.Count > 1)
-                throw new Exception("Ambigunous action "+actionName);
+            {
+                throw new Exception("Ambigunous action " + actionName);
+            }
 
             JustTicket.Engining.Actions.Action action = Activator.CreateInstance(types[0]) as JustTicket.Engining.Actions.Action;
 

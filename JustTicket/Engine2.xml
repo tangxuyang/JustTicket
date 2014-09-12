@@ -67,18 +67,22 @@
     
   -->
   
-  <!--<DownFile RandomFileName="true">
-    <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+  <GlobalVariables>
+	<FileName></FileName>
+  </GlobalVariables>
+  <DownFile RandomFileName="true" Name="df">
+    <Url>http://www.baidu.com</Url>
     <Method>Get</Method>
-    <FileName>.png</FileName>
+    <FileName>.html</FileName>
   </DownFile>
-
+  <Assignment>
+	<Variable>FileName</Variable>
+	<Value>$df.OutputFileName</Value>
+  </Assignment>
+  
   <ConsoleOutput>
-    <Text>text</Text>
-    <DefaultText>defaultText</DefaultText>
-    <IgnoreText>ignoreText</IgnoreText>
-    <Age>13</Age>
-  </ConsoleOutput>-->
+    <Text>{FileName}</Text>
+  </ConsoleOutput>
   
   <!--<GlobalVariables>
     <Name>txy</Name>
@@ -117,8 +121,8 @@
     <Text>{Name}</Text>
   </ConsoleOutput>-->
 
-  <!-- Login -->
-  
+  <!-- Login
+ 
   <GlobalVariables>
     <Name2></Name2>
     <VerificationCode></VerificationCode>
@@ -182,7 +186,7 @@
         </Assignment>
         <ConsoleOutput>
           <Text>{Result}</Text>
-        </ConsoleOutput>
+        </ConsoleOutput>-->
         <!--<DownFile IsDeleteExist="true">
           <Url>
             https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs
@@ -191,14 +195,14 @@
           <FileName>passengers.txt</FileName>
         </DownFile>-->
       
-      </Begin>
+      <!--</Begin>
       <Else>
         <ConsoleOutput>
           <Text>Login failed...</Text>
         </ConsoleOutput>
       </Else>
     </If>
-  </For>
+  </For>-->
 <!---->
 
 

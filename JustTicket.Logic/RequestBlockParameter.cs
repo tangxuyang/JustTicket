@@ -42,6 +42,9 @@ namespace JustTicket.Logic
         #endregion
 
         #region Properties
+        /// <summary>
+        /// 当前支持Get和Post
+        /// </summary>
         public string Method
         {
             get
@@ -78,6 +81,9 @@ namespace JustTicket.Logic
             }
         }
 
+        /// <summary>
+        /// Method是Post时要指定RequestBody
+        /// </summary>
         public string RequestBody
         {
             get
@@ -102,6 +108,9 @@ namespace JustTicket.Logic
             }
         }
 
+        /// <summary>
+        /// ReturnType为File的时候需要指定FileName
+        /// </summary>
         public string FileName
         {
             get

@@ -79,7 +79,6 @@
 	<Variable>FileName</Variable>
 	<Value>$df.OutputFileName</Value>
   </Assignment>
-  
   <ConsoleOutput>
     <Text>{FileName}</Text>
   </ConsoleOutput>

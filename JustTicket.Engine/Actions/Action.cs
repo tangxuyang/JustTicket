@@ -50,7 +50,24 @@ namespace JustTicket.Engining.Actions
             {
                 variables = value;
             }
+        }
 
+        private Dictionary<string, ValueExpression> expression;
+        [Ignore]
+        public Dictionary<string, ValueExpression> Expression
+        {
+            get
+            {
+                if(expression == null)
+                {
+                    expression = new Dictionary<string, ValueExpression>();
+                }
+                return expression;
+            }
+            set
+            {
+                expression = value;
+            }
         }
 
         private Dictionary<string, Action> namedActions;
@@ -105,31 +122,50 @@ namespace JustTicket.Engining.Actions
 
             //Only Property
             Type type = this.GetType();
-            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(pro=>!IsExcludeProproty(pro)).ToArray();
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(pro=>!IsExcludedProproty(pro)).ToArray();
+
+            PropertyInfo[] attributeProperties = properties.Where(pro => !IsElementProperty(pro)).ToArray();
+            PropertyInfo[] elementProperties = properties.Where(pro => IsElementProperty(pro)).ToArray();
+
             string propertyName;
             XmlNode node;
-            foreach(var pro in properties)
+
+            foreach(var pro in attributeProperties)
             {
                 propertyName = pro.Name;
-                node = ele.SelectSingleNode(propertyName);
-                if (node == null)
+                var attr = ele.Attributes[propertyName];
+                if(attr == null)
                 {
-                    var attr = ele.Attributes[propertyName];
-                    if (attr == null)
+                    var v = pro.GetCustomAttributes(typeof(DefaultAttribute), false);
+                    if (v != null && v.Length > 0)
                     {
-                        var v = pro.GetCustomAttributes(typeof(DefaultAttribute), false);
-                        if (v != null && v.Length > 0)
-                        {
-                            SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
-                        }
-                        else
-                        {
-                            throw new Exception(propertyName + " not in the xml");
-                        }
+                        SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
                     }
                     else
                     {
-                        SetPropertyValue(pro, this, attr.Value);
+                        throw new Exception(propertyName + " not in the xml");
+                    }
+                }
+                else
+                {
+                    SetPropertyValue(pro, this, attr.Value);
+                }
+            }
+
+            foreach(var pro in elementProperties)
+            {
+                propertyName = pro.Name;
+                node = ele.SelectSingleNode(propertyName);
+                if(node == null)
+                {
+                    var v = pro.GetCustomAttributes(typeof(DefaultAttribute), false);
+                    if (v != null && v.Length > 0)
+                    {
+                        SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
+                    }
+                    else
+                    {
+                        throw new Exception(propertyName + " not in the xml");
                     }
                 }
                 else
@@ -137,6 +173,38 @@ namespace JustTicket.Engining.Actions
                     SetPropertyValue(pro, this, node.InnerText);
                 }
             }
+
+            //foreach(var pro in properties)
+            //{
+            //    propertyName = pro.Name;
+            //    node = ele.SelectSingleNode(propertyName);
+            //    if (node == null)
+            //    {
+            //        var attr = ele.Attributes[propertyName];
+            //        if (attr == null)
+            //        {
+            //            var v = pro.GetCustomAttributes(typeof(DefaultAttribute), false);
+            //            if (v != null && v.Length > 0)
+            //            {
+            //                SetPropertyValue(pro, this, ((DefaultAttribute)v[0]).DefaultValue);
+            //            }
+            //            else
+            //            {
+            //                throw new Exception(propertyName + " not in the xml");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            SetPropertyValue(pro, this, attr.Value);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        SetPropertyValue(pro, this, node.InnerText);
+            //    }
+
+            //    expression.Add(propertyName, new ValueExpression() {  Action =this, PropertyInfo = pro});
+            //}
 
             if(!string.IsNullOrEmpty(this.Name) )
             {
@@ -149,30 +217,36 @@ namespace JustTicket.Engining.Actions
             }
         }
 
-        protected bool IsExcludeProproty(PropertyInfo pi)
+        protected bool IsExcludedProproty(PropertyInfo pi)
         {
             int count = pi.GetCustomAttributes(true).Where(obj => obj is IgnoreAttribute).ToList().Count;
             bool complexNonString = !pi.PropertyType.IsPrimitive && pi.PropertyType != typeof(string);
             return  count> 0 || complexNonString ;
         }
 
+        protected bool IsElementProperty(PropertyInfo pi)
+        {
+            return pi.GetCustomAttributes(true).ToList().Exists(attr => attr is ElementAttribute);
+        }
+
         protected void SetPropertyValue(PropertyInfo pi, object obj, object value)
         {
-            value = Container.Variables.Resolve(Container, value.ToString());
-            object o = value;
+            
+            string result = expression[pi.Name].Calculate();
+            //object o = Container.Variables.Resolve(Container, value.ToString());
             if(pi.PropertyType.IsEnum)
             {
-                o = Enum.Parse(pi.DeclaringType, value.ToString());
+                o = Enum.Parse(pi.DeclaringType, result);
             }
             
             if(pi.PropertyType.Name == "Int32")
             {
-                o = Int32.Parse(value.ToString());
+                o = Int32.Parse(result);
             }
             
             if(pi.PropertyType.Name == "Boolean")
             {
-                o = bool.Parse(value.ToString());
+                o = bool.Parse(result);
             }
             
             pi.SetValue(obj, o, null);

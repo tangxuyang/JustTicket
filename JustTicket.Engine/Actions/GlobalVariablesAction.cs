@@ -8,7 +8,7 @@ using JustTicket.Engining;
 namespace JustTicket.Engining.Actions
 {
     /// <summary>
-    /// 同一个范围内只能有一个，否则后一个会把前一个冲掉
+    /// 如果同一Scope中多个合并，并以最晚那个为准
     /// </summary>
     public class GlobalVariablesAction : Action
     {
@@ -21,17 +21,20 @@ namespace JustTicket.Engining.Actions
 
             XmlNode root = doc.FirstChild;
             
-            Container.Variables.Variables.Clear();
+            //Container.Variables.Variables.Clear();
 
             foreach(XmlNode g in root.ChildNodes)
             {
+                if (Container.Variables.Variables.ContainsKey(g.Name))
+                {
+                    Container.Variables.Variables.Remove(g.Name);
+                }
                 Container.Variables.Variables.Add(g.Name, g.InnerText);
             }
         }
         public override void Execute()
         {
             base.Execute();
-            //throw new NotImplementedException();
         }
     }
 }

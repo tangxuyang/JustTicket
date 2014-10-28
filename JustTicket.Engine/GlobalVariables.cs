@@ -73,7 +73,6 @@ namespace JustTicket.Engining
                 }
                 else
                     str = str.Replace("{" + t + "}", val);
-                
             }
             return str;
         }

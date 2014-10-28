@@ -17,11 +17,11 @@ namespace JustTicket.Tools
         [STAThread]
         static void Main()
         {
-            string fileName = "queryT.txt";
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            string str = sr.ReadToEnd();
-            var result =  JsonConvert.DeserializeObject<TrainsSearchResultDTO>(str);
+            //string fileName = "queryT.txt";
+            //FileStream fs = new FileStream(fileName, FileMode.Open);
+            //StreamReader sr = new StreamReader(fs);
+            //string str = sr.ReadToEnd();
+            //var result =  JsonConvert.DeserializeObject<TrainsSearchResultDTO>(str);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

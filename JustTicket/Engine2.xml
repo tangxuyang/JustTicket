@@ -71,18 +71,18 @@
 	<FileName></FileName>
   </GlobalVariables>
   <DownFile RandomFileName="true" Name="df">
-    <Url>http://www.baidu.com</Url>
+    <Url>http://cdn3.filepi.com/g/uaXlsc3/1410760599/7f8ca58b168a318043369a97fc2fb951</Url>
     <Method>Get</Method>
-    <FileName>.html</FileName>
+    <FileName>.pdf</FileName>
   </DownFile>
   <Assignment>
 	<Variable>FileName</Variable>
 	<Value>$df.OutputFileName</Value>
   </Assignment>
-  
   <ConsoleOutput>
     <Text>{FileName}</Text>
   </ConsoleOutput>
+  
   
   <!--<GlobalVariables>
     <Name>txy</Name>

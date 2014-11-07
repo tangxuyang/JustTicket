@@ -67,7 +67,7 @@
     
   -->
   
-  <GlobalVariables>
+  <!--<GlobalVariables>
 	<FileName></FileName>
   </GlobalVariables>
   <DownFile RandomFileName="true" Name="df">
@@ -81,8 +81,46 @@
   </Assignment>
   <ConsoleOutput>
     <Text>{FileName}</Text>
+  </ConsoleOutput>-->
+  <GlobalVariables>
+    <Age>223</Age>
+  </GlobalVariables>
+  <ConsoleInput Name="input">
+    <Text>请输入整数:</Text>
+  </ConsoleInput>
+  <!--<Assignment Value="$input.OutputString" Variable="Age">
+    
+  </Assignment>-->
+  <ConsoleOutput>
+    <Text>$input.OutputString</Text>
   </ConsoleOutput>
-  
+  <ConsoleOutput>
+    <Text>{Age}</Text>
+  </ConsoleOutput>
+  <For IterateCount="$input.OutputString">
+    <ConsoleOutput>
+      <Text>haha</Text>
+    </ConsoleOutput>
+  </For>
+  <If Condition="1!=1">
+    <Begin>
+          <ConsoleOutput>
+      <Text>1==1</Text>
+    </ConsoleOutput>
+    </Begin>
+    <Else>
+      <ConsoleOutput>
+        <Text>1!=2</Text>
+      </ConsoleOutput>
+    </Else>
+  </If>
+  <For IterateCount="0">
+    <DownFile RandomFileName="true">
+      <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
+      <Method>Get</Method>
+      <FileName>.png</FileName>
+    </DownFile>
+  </For>
   
   <!--<GlobalVariables>
     <Name>txy</Name>

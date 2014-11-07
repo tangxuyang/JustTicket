@@ -7,7 +7,7 @@ using JustTicket.Engining.Actions;
 
 namespace JustTicket.Engining
 {
-    public class ValueExpression
+    public class PropertyResolver
     {
         public string Expression
         {  
@@ -31,7 +31,7 @@ namespace JustTicket.Engining
 
         public PropertyInfo PropertyInfo { get; set; }
 
-        public string Calculate()
+        public virtual string Calculate()
         {
             string expression = Expression;
             if (expression.Contains("{"))//Variable
@@ -41,7 +41,12 @@ namespace JustTicket.Engining
 
             if (expression.Contains("$"))//Object.Property
             {
-                
+                string[] strs = expression.Split('.');
+                string actionName = strs[0].TrimStart('$');
+                string propertyName = strs[1];
+
+                Action action = GetActionFromContainer(actionName);
+                dic[Variable] = GetPropertyValue(propertyName, action);
                 return null;
             }
             return Expression;

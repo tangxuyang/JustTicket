@@ -12,7 +12,20 @@ namespace JustTicket.Engining.Actions
     /// </summary>
     public class ConsoleOutputAction : Action
     {
-        public string Text { get; set; }
+        private string text;
+
+        [Element]
+        public string Text 
+        { 
+            get
+            {
+                return GetPropertyValue<string>("Text", this);
+            }
+            set
+            {
+                text = value;
+            }
+        }
 
         public override void Execute()
         {

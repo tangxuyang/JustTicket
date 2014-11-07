@@ -15,10 +15,19 @@ namespace JustTicket.Engining.Actions
             set;
         }
 
+        private string text;
+
+        [Element]
         public string Text
         {
-            get;
-            set;
+            get
+            {
+                return GetPropertyValue<string>("Text", this);
+            }
+            set
+            {
+                text = value;
+            }
         }
 
         public override void Execute()

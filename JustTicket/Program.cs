@@ -17,9 +17,26 @@ namespace JustTicket
     {
         static void Main(string[] args)
         {
-            Test.TestEngine2();
-             
-            Console.WriteLine("over....");
+            string fileName;
+            if (args.Length == 0)
+            {
+                fileName = "..\\..\\Engine2.xml";
+            }
+            else
+            {
+                fileName = args[0];
+            }
+
+            try
+            {
+                Test.TestEngine2(fileName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            Console.WriteLine("Completed...");
             Console.ReadLine();
         }
     }
@@ -145,9 +162,9 @@ namespace JustTicket
 
         }
 
-        public static void TestEngine2()
+        public static void TestEngine2(string fileName)
         {
-            string fileName = "..\\..\\Engine2.xml";
+            //string fileName = "..\\..\\Engine2.xml";
             Engine2 engine = new Engine2();
             engine.FileName = fileName;
 

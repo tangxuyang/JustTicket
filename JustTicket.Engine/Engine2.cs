@@ -63,10 +63,10 @@ namespace JustTicket.Engining
                 JustTicket.Engining.Actions.Action action = ActionResolver.ResolveAction(node.Name, string.IsNullOrEmpty(ns) ? null : ns);
                 action.Container = containerAction;
                 action.Init(node.OuterXml);
-                if (!string.IsNullOrEmpty(action.Name))
-                {
-                    containerAction.NamedActions.Add(action.Name, action);//保存具有名称的action到Dictionary中
-                }
+                //if (!string.IsNullOrEmpty(action.Name))
+                //{
+                //    containerAction.NamedActions.Add(action.Name, action);//保存具有名称的action到Dictionary中
+                //}
                 containerAction.ChildActions.Add(action);
                 action.Execute();
             }

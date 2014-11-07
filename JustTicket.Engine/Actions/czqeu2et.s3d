@@ -34,7 +34,6 @@ namespace JustTicket.Engining.Actions
         /// <summary>
         /// 请求的方式，Get或Post
         /// </summary>
-        [Element]
         [Default(DefaultValue="Get")]
         public string Method
         {
@@ -49,11 +48,9 @@ namespace JustTicket.Engining.Actions
         }
 
         private string url;
-
         /// <summary>
         /// 请求的地址
         /// </summary>
-        [Element]
         public string Url
         {
             get
@@ -68,11 +65,9 @@ namespace JustTicket.Engining.Actions
 
         private string requestBody;
 
-        
         /// <summary>
         /// 请求的Body，Post使用
         /// </summary>
-        [Element]
         [Default(DefaultValue="")]
         public string RequestBody
         {
@@ -82,12 +77,10 @@ namespace JustTicket.Engining.Actions
             }
             set
             {
-                requestBody = value;
+
             }
         
         }
-
-        private bool randomFileName;
 
         /// <summary>
         /// 是否随机生成文件名
@@ -95,14 +88,8 @@ namespace JustTicket.Engining.Actions
         [Default(DefaultValue="false")]
         public bool RandomFileName
         {
-            get
-            {
-                return GetPropertyValue<bool>("RandomFileName", this);
-            }
-            set
-            {
-                randomFileName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -143,11 +130,6 @@ namespace JustTicket.Engining.Actions
             }
 
             OutputFileName = NetHelper.SendRequest(Method, RequestBody, RequestBlockReturnType.FileName, Url, fileName) as string;
-        }
-
-        public RequestFileAction()
-        {
-
         }
     }
 }

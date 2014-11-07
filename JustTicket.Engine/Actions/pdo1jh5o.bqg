@@ -160,7 +160,7 @@ namespace JustTicket.Engining.Actions
                 else
                 {
                     val = attr.Value;
-                    //SetPropertyValue(pro, this, attr.Value);
+                    SetPropertyValue(pro, this, attr.Value);
                 }
                 Expression.Add(propertyName, new PropertyResolver() { Action = this, PropertyInfo = pro, OrginalExpress = val });
             }
@@ -186,7 +186,7 @@ namespace JustTicket.Engining.Actions
                 else
                 {
                     val = node.InnerText;
-                    //SetPropertyValue(pro, this, node.InnerText);
+                    SetPropertyValue(pro, this, node.InnerText);
                 }
 
                 Expression.Add(propertyName, new PropertyResolver() {Action = this, PropertyInfo = pro, OrginalExpress= val });
@@ -240,21 +240,21 @@ namespace JustTicket.Engining.Actions
             //string result = expression[pi.Name].Calculate();
             //object o = Container.Variables.Resolve(Container, value.ToString());
             object o = result;
-            if (pi.PropertyType.IsEnum)
+            if(pi.PropertyType.IsEnum)
             {
                 o = Enum.Parse(pi.DeclaringType, result);
             }
-
-            if (pi.PropertyType.Name == "Int32")
+            
+            if(pi.PropertyType.Name == "Int32")
             {
                 o = Int32.Parse(result);
             }
-
-            if (pi.PropertyType.Name == "Boolean")
+            
+            if(pi.PropertyType.Name == "Boolean")
             {
                 o = bool.Parse(result);
             }
-
+            
             pi.SetValue(obj, o, null);
         }
 
@@ -291,7 +291,7 @@ namespace JustTicket.Engining.Actions
             }
             else
             {
-                t = (T)((object)result);
+                t = (T)(objec)obj;
             }
             
             return t;

@@ -89,7 +89,8 @@ namespace JustTicket.Tools
             string from = tb_From.Text;
             string to = tb_To.Text;
             ///otn/leftTicket/queryT?leftTicketDTO.train_date=2014-09-02&leftTicketDTO.from_station=SHH&leftTicketDTO.to_station=SQF&purpose_codes=ADULT
-            string url = string.Format("https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date={0}&amp;leftTicketDTO.from_station={1}&amp;leftTicketDTO.to_station={2}&amp;purpose_codes=ADULT",date,from,to);
+            //string url = string.Format("https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date={0}&leftTicketDTO.from_station={1}&leftTicketDTO.to_station={2}&purpose_codes=ADULT",date,from,to);
+            string url = string.Format("https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date={0}&amp;leftTicketDTO.from_station={1}&amp;leftTicketDTO.to_station={2}&amp;purpose_codes=ADULT",date,from.ToUpper(),to.ToUpper());
 
             string action = "<actions><DownFile><Method>Get</Method><FileName>trains.txt</FileName><Url>"+url+"</Url></DownFile></actions>";
 
@@ -344,6 +345,14 @@ namespace JustTicket.Tools
         private void btn_CheckOrderInfo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tb_TrainFilter_TextChanged(object sender, EventArgs e)
+        {
+            string trainNo = tb_TrainFilter.Text;
+            string filter = "车次 like '%" + trainNo + "%'";
+            BindingSource bs = dataGridView2.DataSource as BindingSource;
+            bs.Filter = filter;
         }
     }    
 }

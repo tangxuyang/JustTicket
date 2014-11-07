@@ -8,16 +8,32 @@ namespace JustTicket.Engining.Actions
 {
     public class AssignmentAction : Action
     {
+        string variable;
         public string Variable 
         { 
-            get; 
-            set; 
+            get
+            {
+                return GetPropertyValue<string>("Variable", this);
+            }
+            set
+            {
+                variable = value;
+            }
+
+
         }
 
+        string value;
         public string Value
         {
-            get;
-            set;
+            get
+            {
+                return GetPropertyValue<string>("Value", this);
+            }
+            set
+            {
+                this.value = value;
+            }
         }
 
         public override void Execute()
@@ -52,6 +68,8 @@ namespace JustTicket.Engining.Actions
                 Action action = GetActionFromContainer(actionName);
                 dic[Variable] = GetPropertyValue(propertyName, action);
             }
+            this.Value = "hell.";
+            Console.WriteLine("value:"+this.value);
         }
 
         private Action GetActionFromContainer(string actionName)

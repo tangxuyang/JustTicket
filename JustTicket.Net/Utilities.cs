@@ -33,6 +33,10 @@ namespace JustTicket.Net
         /// <returns></returns>
         public static string SaveAsFile(Stream stream,string filename)
         {
+            if(File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
             FileStream fileStream = new FileStream(filename, FileMode.CreateNew);
             byte[] buffer = new byte[10240];
             int n;

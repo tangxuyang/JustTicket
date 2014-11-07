@@ -35,6 +35,19 @@
             this.btn_GetCityList = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_CheckOrderInfo = new System.Windows.Forms.Button();
+            this.btn_Buy = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.tb_TrainFilter = new System.Windows.Forms.TextBox();
+            this.btn_TrainSearch = new System.Windows.Forms.Button();
+            this.tb_To = new System.Windows.Forms.TextBox();
+            this.tb_From = new System.Windows.Forms.TextBox();
+            this.tb_Date = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btn_GetPassenger = new System.Windows.Forms.Button();
+            this.lb_LoginResult = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.pb_VerificationCode = new System.Windows.Forms.PictureBox();
@@ -45,25 +58,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lb_LoginResult = new System.Windows.Forms.Label();
-            this.btn_GetPassenger = new System.Windows.Forms.Button();
-            this.tb_TrainFilter = new System.Windows.Forms.TextBox();
-            this.btn_TrainSearch = new System.Windows.Forms.Button();
-            this.tb_To = new System.Windows.Forms.TextBox();
-            this.tb_From = new System.Windows.Forms.TextBox();
-            this.tb_Date = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.btn_Buy = new System.Windows.Forms.Button();
-            this.btn_CheckOrderInfo = new System.Windows.Forms.Button();
             this.tb_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_Main
@@ -75,7 +75,7 @@
             this.tb_Main.Location = new System.Drawing.Point(0, 0);
             this.tb_Main.Name = "tb_Main";
             this.tb_Main.SelectedIndex = 0;
-            this.tb_Main.Size = new System.Drawing.Size(1020, 597);
+            this.tb_Main.Size = new System.Drawing.Size(1020, 735);
             this.tb_Main.TabIndex = 0;
             // 
             // tabPage1
@@ -86,7 +86,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(618, 568);
+            this.tabPage1.Size = new System.Drawing.Size(1012, 709);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "City";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -103,10 +103,10 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 101);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 242);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(612, 464);
+            this.dataGridView1.Size = new System.Drawing.Size(1006, 464);
             this.dataGridView1.TabIndex = 1;
             // 
             // btn_GetCityList
@@ -124,7 +124,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(618, 568);
+            this.tabPage2.Size = new System.Drawing.Size(1012, 571);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trains";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -156,10 +156,124 @@
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1012, 571);
+            this.tabPage3.Size = new System.Drawing.Size(1012, 709);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Passengers";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_CheckOrderInfo
+            // 
+            this.btn_CheckOrderInfo.Location = new System.Drawing.Point(654, 428);
+            this.btn_CheckOrderInfo.Name = "btn_CheckOrderInfo";
+            this.btn_CheckOrderInfo.Size = new System.Drawing.Size(109, 23);
+            this.btn_CheckOrderInfo.TabIndex = 20;
+            this.btn_CheckOrderInfo.Text = "CheckOrderInfo";
+            this.btn_CheckOrderInfo.UseVisualStyleBackColor = true;
+            this.btn_CheckOrderInfo.Click += new System.EventHandler(this.btn_CheckOrderInfo_Click);
+            // 
+            // btn_Buy
+            // 
+            this.btn_Buy.Location = new System.Drawing.Point(822, 428);
+            this.btn_Buy.Name = "btn_Buy";
+            this.btn_Buy.Size = new System.Drawing.Size(75, 23);
+            this.btn_Buy.TabIndex = 19;
+            this.btn_Buy.Text = "Buy";
+            this.btn_Buy.UseVisualStyleBackColor = true;
+            this.btn_Buy.Click += new System.EventHandler(this.btn_Buy_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 457);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 23;
+            this.dataGridView2.Size = new System.Drawing.Size(1012, 252);
+            this.dataGridView2.TabIndex = 18;
+            // 
+            // tb_TrainFilter
+            // 
+            this.tb_TrainFilter.Location = new System.Drawing.Point(86, 401);
+            this.tb_TrainFilter.Name = "tb_TrainFilter";
+            this.tb_TrainFilter.Size = new System.Drawing.Size(100, 21);
+            this.tb_TrainFilter.TabIndex = 11;
+            this.tb_TrainFilter.TextChanged += new System.EventHandler(this.tb_TrainFilter_TextChanged);
+            // 
+            // btn_TrainSearch
+            // 
+            this.btn_TrainSearch.Location = new System.Drawing.Point(406, 401);
+            this.btn_TrainSearch.Name = "btn_TrainSearch";
+            this.btn_TrainSearch.Size = new System.Drawing.Size(75, 23);
+            this.btn_TrainSearch.TabIndex = 10;
+            this.btn_TrainSearch.Text = "Search";
+            this.btn_TrainSearch.UseVisualStyleBackColor = true;
+            this.btn_TrainSearch.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // tb_To
+            // 
+            this.tb_To.Location = new System.Drawing.Point(406, 335);
+            this.tb_To.Name = "tb_To";
+            this.tb_To.Size = new System.Drawing.Size(100, 21);
+            this.tb_To.TabIndex = 9;
+            // 
+            // tb_From
+            // 
+            this.tb_From.Location = new System.Drawing.Point(239, 336);
+            this.tb_From.Name = "tb_From";
+            this.tb_From.Size = new System.Drawing.Size(100, 21);
+            this.tb_From.TabIndex = 8;
+            // 
+            // tb_Date
+            // 
+            this.tb_Date.Location = new System.Drawing.Point(86, 335);
+            this.tb_Date.Name = "tb_Date";
+            this.tb_Date.Size = new System.Drawing.Size(100, 21);
+            this.tb_Date.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(359, 345);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 12);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "To";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(192, 344);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 12);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "From";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(38, 345);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 12);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Date";
+            // 
+            // btn_GetPassenger
+            // 
+            this.btn_GetPassenger.Location = new System.Drawing.Point(399, 151);
+            this.btn_GetPassenger.Name = "btn_GetPassenger";
+            this.btn_GetPassenger.Size = new System.Drawing.Size(87, 23);
+            this.btn_GetPassenger.TabIndex = 6;
+            this.btn_GetPassenger.Text = "GetPassengers";
+            this.btn_GetPassenger.UseVisualStyleBackColor = true;
+            this.btn_GetPassenger.Click += new System.EventHandler(this.btn_GetPassenger_Click);
+            // 
+            // lb_LoginResult
+            // 
+            this.lb_LoginResult.AutoSize = true;
+            this.lb_LoginResult.Location = new System.Drawing.Point(188, 151);
+            this.lb_LoginResult.Name = "lb_LoginResult";
+            this.lb_LoginResult.Size = new System.Drawing.Size(0, 12);
+            this.lb_LoginResult.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -248,123 +362,11 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "UserName:";
             // 
-            // lb_LoginResult
-            // 
-            this.lb_LoginResult.AutoSize = true;
-            this.lb_LoginResult.Location = new System.Drawing.Point(188, 151);
-            this.lb_LoginResult.Name = "lb_LoginResult";
-            this.lb_LoginResult.Size = new System.Drawing.Size(0, 12);
-            this.lb_LoginResult.TabIndex = 9;
-            // 
-            // btn_GetPassenger
-            // 
-            this.btn_GetPassenger.Location = new System.Drawing.Point(399, 151);
-            this.btn_GetPassenger.Name = "btn_GetPassenger";
-            this.btn_GetPassenger.Size = new System.Drawing.Size(87, 23);
-            this.btn_GetPassenger.TabIndex = 6;
-            this.btn_GetPassenger.Text = "GetPassengers";
-            this.btn_GetPassenger.UseVisualStyleBackColor = true;
-            this.btn_GetPassenger.Click += new System.EventHandler(this.btn_GetPassenger_Click);
-            // 
-            // tb_TrainFilter
-            // 
-            this.tb_TrainFilter.Location = new System.Drawing.Point(86, 401);
-            this.tb_TrainFilter.Name = "tb_TrainFilter";
-            this.tb_TrainFilter.Size = new System.Drawing.Size(100, 21);
-            this.tb_TrainFilter.TabIndex = 11;
-            // 
-            // btn_TrainSearch
-            // 
-            this.btn_TrainSearch.Location = new System.Drawing.Point(406, 401);
-            this.btn_TrainSearch.Name = "btn_TrainSearch";
-            this.btn_TrainSearch.Size = new System.Drawing.Size(75, 23);
-            this.btn_TrainSearch.TabIndex = 10;
-            this.btn_TrainSearch.Text = "Search";
-            this.btn_TrainSearch.UseVisualStyleBackColor = true;
-            this.btn_TrainSearch.Click += new System.EventHandler(this.btn_Search_Click);
-            // 
-            // tb_To
-            // 
-            this.tb_To.Location = new System.Drawing.Point(406, 335);
-            this.tb_To.Name = "tb_To";
-            this.tb_To.Size = new System.Drawing.Size(100, 21);
-            this.tb_To.TabIndex = 9;
-            // 
-            // tb_From
-            // 
-            this.tb_From.Location = new System.Drawing.Point(239, 336);
-            this.tb_From.Name = "tb_From";
-            this.tb_From.Size = new System.Drawing.Size(100, 21);
-            this.tb_From.TabIndex = 8;
-            // 
-            // tb_Date
-            // 
-            this.tb_Date.Location = new System.Drawing.Point(86, 335);
-            this.tb_Date.Name = "tb_Date";
-            this.tb_Date.Size = new System.Drawing.Size(100, 21);
-            this.tb_Date.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(359, 345);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 12);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "To";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(192, 344);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 12);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "From";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 345);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 12);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Date";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 454);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(612, 114);
-            this.dataGridView2.TabIndex = 18;
-            // 
-            // btn_Buy
-            // 
-            this.btn_Buy.Location = new System.Drawing.Point(821, 454);
-            this.btn_Buy.Name = "btn_Buy";
-            this.btn_Buy.Size = new System.Drawing.Size(75, 23);
-            this.btn_Buy.TabIndex = 19;
-            this.btn_Buy.Text = "Buy";
-            this.btn_Buy.UseVisualStyleBackColor = true;
-            this.btn_Buy.Click += new System.EventHandler(this.btn_Buy_Click);
-            // 
-            // btn_CheckOrderInfo
-            // 
-            this.btn_CheckOrderInfo.Location = new System.Drawing.Point(650, 453);
-            this.btn_CheckOrderInfo.Name = "btn_CheckOrderInfo";
-            this.btn_CheckOrderInfo.Size = new System.Drawing.Size(109, 23);
-            this.btn_CheckOrderInfo.TabIndex = 20;
-            this.btn_CheckOrderInfo.Text = "CheckOrderInfo";
-            this.btn_CheckOrderInfo.UseVisualStyleBackColor = true;
-            this.btn_CheckOrderInfo.Click += new System.EventHandler(this.btn_CheckOrderInfo_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 597);
+            this.ClientSize = new System.Drawing.Size(1020, 735);
             this.Controls.Add(this.tb_Main);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -374,8 +376,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_VerificationCode)).EndInit();
             this.ResumeLayout(false);
 
         }

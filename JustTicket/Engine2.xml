@@ -114,7 +114,7 @@
       </ConsoleOutput>
     </Else>
   </If>
-  <For IterateCount="0">
+  <For IterateCount="1000">
     <DownFile RandomFileName="true">
       <Url>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand</Url>
       <Method>Get</Method>

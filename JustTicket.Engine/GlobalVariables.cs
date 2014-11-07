@@ -25,22 +25,23 @@ namespace JustTicket.Engining
         /// <returns></returns>
         public string Resolve(JustTicket.Engining.Actions.Action action, string str)
         {
-            List<string> tokens = new List<string>();
-            string temp="";
-            foreach(var v in str)
-            {
-                if (v == '}')
-                {
-                    tokens.Add(temp);
-                    continue;
-                }
-                if(v == '{')
-                {
-                    temp = "";
-                    continue;
-                }
-                temp += v;
-            }
+            //List<string> tokens = new List<string>();
+            //string temp="";
+            //foreach(var v in str)
+            //{
+            //    if (v == '}')
+            //    {
+            //        tokens.Add(temp);
+            //        continue;
+            //    }
+            //    if(v == '{')
+            //    {
+            //        temp = "";
+            //        continue;
+            //    }
+            //    temp += v;
+            //}
+            List<string> tokens = TokenHelper.GetToken(str, '{', '}');
 
             
             foreach(var t in tokens)

@@ -36,27 +36,60 @@ namespace JustTicket.Engining
             string expression = OrginalExpress;
             if (expression.Contains("{"))//Variable
             {
-                return Action.Variables.Resolve(Action, expression);
+                //return Action.Variables.Resolve(Action, expression);
+                expression = Action.Variables.Resolve(Action, expression);
             }
 
             if (expression.Contains("$"))//Object.Property
             {
-                string[] strs = expression.Split('.');
-                string actionName = strs[0].TrimStart('$');
+                //string[] strs = expression.Split('.');
+                //string actionName = strs[0].TrimStart('$');
+                //string propertyName = strs[1];
+
+                //JustTicket.Engining.Actions.Action action = GetActionFromContainer(actionName);
+                //if (action == null)
+                //{
+                //    throw new Exception(actionName+" doesn't exist.");
+                //}
+                //else
+                //{
+
+                //}
+                //return GetPropertyValue(propertyName, action).ToString();
+                expression = ObjectPropertyResolve(expression);
+            }
+            return expression;
+        }
+
+        private string ObjectPropertyResolve(string expression)
+        {
+            string result = expression;
+            //List<string> tokens = TokenHelper.GetTeken(expression, '$', '$');
+            List<string> tokens = TokenHelper.GetToken(expression,'$');
+            foreach (var t in tokens)
+            {
+                if (t == "")
+                {
+                    break;
+                    //   throw new Exception("empty variable reference");
+                }
+
+                string[] strs = t.Split('.');
+                string actionName = strs[0];
                 string propertyName = strs[1];
 
                 JustTicket.Engining.Actions.Action action = GetActionFromContainer(actionName);
                 if (action == null)
                 {
-                    throw new Exception(actionName+" doesn't exist.");
+                    throw new Exception(actionName + " action doesn't exist.");
                 }
                 else
                 {
-
+                    result = result.Replace("$" + t + "$", GetPropertyValue(propertyName, action).ToString());
                 }
-                return GetPropertyValue(propertyName, action).ToString();
             }
-            return expression;
+
+            return result;
         }
 
         private JustTicket.Engining.Actions.Action GetActionFromContainer(string actionName)

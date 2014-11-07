@@ -68,8 +68,6 @@ namespace JustTicket.Engining.Actions
                 Action action = GetActionFromContainer(actionName);
                 dic[Variable] = GetPropertyValue(propertyName, action);
             }
-            this.Value = "hell.";
-            Console.WriteLine("value:"+this.value);
         }
 
         private Action GetActionFromContainer(string actionName)

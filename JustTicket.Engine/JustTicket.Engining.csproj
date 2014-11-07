@@ -74,6 +74,7 @@
     <Compile Include="ResultStack.cs" />
     <Compile Include="Step.cs" />
     <Compile Include="PropertyResolver.cs" />
+    <Compile Include="TokenHelper.cs" />
     <Compile Include="XmlReader.cs" />
   </ItemGroup>
   <ItemGroup>
